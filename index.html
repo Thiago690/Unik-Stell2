@@ -9,43 +9,73 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <header class="ke-header">
-        <div class="ke-top">
-            <div class="ke-logo-area">
-                <!-- Logo + text -->
-                <img class="ke-logo" src="https://i.imgur.com/XcB4e0F.png" alt="Kaus Elite" />
-                <div class="ke-brand">
-                    <span class="ke-brand-main">KAUS</span>
-                    <span class="ke-brand-elite">ELITE</span>
-                </div>
-            </div>
-            <nav class="ke-midnav">
-                <a href="#">Cuidados com sua Camiseta</a>
-                <a href="#">Troca e Devolução</a>
-            </nav>
-            <div class="ke-search-area">
-                <form>
-                    <div class="ke-search-box">
-                        <img src="https://img.icons8.com/ios-glyphs/30/888888/search--v1.png" alt="Pesquisar" class="ke-search-icon" />
-                        <input type="text" placeholder="Pesquisar produtos..." />
-                    </div>
-                </form>
+  <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Unik Stil | Início</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="topbar">
+        <div class="top-item">
+            <img src="https://img.icons8.com/ios-filled/50/000000/lock--v1.png" alt="compra segura" class="icon">
+            <span>COMPRA SEGURA</span>
+        </div>
+        <div class="top-item">
+            <img src="https://img.icons8.com/color/48/000000/pickup.png" alt="frete grátis" class="icon">
+            <span>FRETE GRÁTIS</span>
+        </div>
+        <div class="top-item">
+            <img src="https://img.icons8.com/color/48/000000/dollar.png" alt="parcelamento" class="icon">
+            <span>parcele em até em 12x</span>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-neon">
+            <span class="unik">UNIK</span> <span class="stil">STIL</span>
+        </div>
+        <ul>
+            <li class="active"><span>INÍCIO</span></li>
+            <li>LOJA</li>
+            <li>MINHA CONTA</li>
+            <li>PERGUNTAS FREQUENTES</li>
+            <li>CONTATO</li>
+        </ul>
+        <div class="cart-icon">
+            <img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" alt="carrinho">
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <p class="headline">NÃO PERCA TEMPO PARA SE VESTIR.</p>
+            <p class="headline">QUALIDADE E MODA É COM A</p>
+            <div class="logo-neon large">
+                <span class="unik">UNIK</span> <span class="stil">STIL</span>
             </div>
         </div>
-        <div class="ke-bottom">
-            <nav class="ke-mainnav">
-                <a class="active" href="#">Home</a>
-                <a href="#">Empresa <span class="ke-dropdown">&#9662;</span></a>
-                <a href="#">Em Foco</a>
-                <a href="#">Minha conta</a>
-                <a href="#">Contato</a>
-            </nav>
-            <div class="ke-cart-area">
-                <span class="ke-cart-price">R$ 0,00</span>
-                <span class="ke-cart-count">0 item</span>
-                <img src="https://img.icons8.com/ios-filled/30/ffffff/shopping-basket-2.png" alt="Carrinho" class="ke-cart-icon" />
-            </div>
+        <div class="hero-image">
+            <img src="https://i.imgur.com/5v5bLZN.png" alt="camiseta branca" class="shirt-img">
         </div>
-    </header>
+        <div class="best-clothes">
+            <span>AS MELHORES ROUPAS</span>
+            <img src="https://img.icons8.com/color/48/000000/crown.png" alt="coroa" class="crown">
+        </div>
+    </section>
+
+    <!-- Destaques -->
+    <div class="destaques-bar">
+        <span class="destaques-title">
+            <span class="destaques-underline"></span>
+            <span>destaques</span>
+            <span class="destaques-underline"></span>
+        </span>
+    </div>
 </body>
 </html>
