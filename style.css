@@ -1,1 +1,220 @@
+body {
+    margin: 0;
+    font-family: 'Oswald', Arial, sans-serif;
+    background: #000;
+    color: #fff;
+}
 
+/* Top Bar */
+.topbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #fff;
+    color: #222;
+    padding: 10px 0;
+}
+
+.top-item {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.top-item .icon {
+    height: 48px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    background: #000;
+    padding: 0 40px;
+    height: 70px;
+    position: relative;
+    font-size: 2rem;
+    font-weight: bold;
+    border-bottom: 8px solid #ffd700;
+}
+
+.logo-neon {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-right: 30px;
+    position: relative;
+}
+
+.logo-neon .unik {
+    color: #fff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+    transform: rotate(-17deg);
+    display: inline-block;
+}
+
+.logo-neon .stil {
+    color: #ffd700;
+    text-shadow: 0 0 16px #ffd700, 0 0 32px #ffd700;
+    margin-left: 5px;
+    transform: rotate(-17deg);
+    display: inline-block;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
+.navbar ul li {
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.2s;
+}
+
+.navbar ul li.active span,
+.navbar ul li:hover span {
+    border-bottom: 6px solid #ffd700;
+    color: #ffd700;
+}
+
+.navbar ul li span {
+    color: #fff;
+    font-weight: bold;
+}
+
+.cart-icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.cart-icon img {
+    background: #fff;
+    border-radius: 50%;
+    padding: 10px;
+    height: 54px;
+    width: 54px;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: radial-gradient(circle at 40% 50%, #222 60%, #000 100%);
+    padding: 60px 40px 0 40px;
+    min-height: 400px;
+    position: relative;
+}
+
+.hero-text {
+    flex: 2;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.hero-text .logo-neon.large {
+    font-size: 3.4rem;
+    margin-top: 28px;
+    margin-bottom: 28px;
+}
+
+.headline {
+    margin: 0;
+    margin-bottom: 12px;
+    font-size: 2.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.hero-image {
+    flex: 1.2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.shirt-img {
+    width: 320px;
+    max-width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.best-clothes {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    background: #fff;
+    color: #000;
+    font-size: 2.1rem;
+    font-weight: bold;
+    padding: 20px 40px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 40px 0 #ffd70055;
+}
+
+.best-clothes .crown {
+    height: 48px;
+    margin-left: 16px;
+}
+
+/* Destaques Bar */
+.destaques-bar {
+    background: #000;
+    width: 100%;
+    padding: 10px 0;
+    border-top: 8px solid #fff;
+    text-align: center;
+}
+
+.destaques-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.7rem;
+    font-weight: bold;
+    color: #fff;
+    gap: 16px;
+}
+
+.destaques-underline {
+    display: inline-block;
+    width: 80px;
+    height: 7px;
+    background: #ffd700;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+@media (max-width: 900px) {
+    .navbar, .hero {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .navbar ul {
+        gap: 12px;
+    }
+    .hero-image .shirt-img {
+        width: 200px;
+    }
+    .best-clothes {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+    }
+    .logo-neon.large {
+        font-size: 2rem;
+    }
+}
