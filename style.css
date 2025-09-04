@@ -60,8 +60,8 @@ body {
 
 .main-menu a {
     text-decoration: none;
-    color: #333;
-    color: #ffd700;
+    color: #ffffff;
+    color: #000000;
     font-weight: 700;
     transition: color 0.3s;
 }
