@@ -238,29 +238,4 @@ body {
     .section-title {
         font-size: 28px;
     }
-    ...
-.page-content {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-.page-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 48px;
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.page-content p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 15px;
-}
-...
+    
