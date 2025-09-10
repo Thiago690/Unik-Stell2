@@ -1,0 +1,33 @@
+.faq-section {
+    width: 80%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-container h2 {
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.faq-container h3 {
+    font-family: 'Oswald', sans-serif;
+    color: #555;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.faq-container p {
+    font-family: 'Roboto', sans-serif;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
