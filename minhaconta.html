@@ -34,211 +34,23 @@
         </ul>
         <div class="cart-icon">🛒</div>
     </nav>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unik Stil</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Estilos para os modais */
-        .modal {
-            display: none; /* Esconde o modal por padrão */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4); /* Fundo escuro semi-transparente */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 400px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        .modal-content h2 {
-            margin-top: 0;
-            font-family: 'Oswald', sans-serif;
-            font-size: 2em;
-            color: #333;
-        }
-
-        .modal-content input {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .modal-content button {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-            width: 100%;
-            font-size: 1em;
-        }
-
-        .modal-content button:hover {
-            background-color: #0056b3;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .social-login {
-            margin-top: 20px;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-
-        .social-login button {
-            background-color: #db4437; /* Cor do Google */
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .social-login button img {
-            margin-right: 10px;
-            width: 20px;
-        }
-    </style>
-</head>
-<body>
-    <header class="top-bar">
-        <div class="top-item">
-            <span class="icon">🔒</span>
-            <span class="top-text">COMPRA SEGURA</span>
-        </div>
-        <div class="top-item">
-            <span class="icon">🛻</span>
-            <span class="top-text">FRETE GRÁTIS</span>
-        </div>
-        <div class="top-item">
-            <span class="icon">💳</span>
-            <span class="top-text">PARCELE EM ATÉ 12X</span>
-        </div>
-    </header>
-
-    <nav class="main-menu">
-        <div class="logo">UNIK <span>STIL</span></div>
-        <ul>
-            <li><a href="index.html">INÍCIO</a></li>
-            <li><a href="#" id="faqLink">PERGUNTAS FREQUENTES</a></li>
-            <li><a href="#" id="myAccountLink">MINHA CONTA</a></li>
-            <li><a href="#">DICAS DE CUIDADO</a></li>
-            <li><a href="#">RASTREAMENTO</a></li>
-        </ul>
-        <div class="cart-icon">🛒</div>
-    </nav>
-    
-    <div id="accountModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeAccountModal">&times;</span>
-            <div id="loginForm">
-                <h2>Acessar Conta</h2>
-                <input type="email" placeholder="E-mail" required>
-                <input type="password" placeholder="Senha" required>
-                <button type="submit">Entrar</button>
-                <p>Não tem uma conta? <a href="#" id="showRegister">Crie uma aqui</a></p>
-                <div class="social-login">
-                    <button><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google icon"> Entrar com Google</button>
-                </div>
+<main class="login-container">
+    <div class="login-box">
+        <h2>Acesse sua conta</h2>
+        <form action="#" method="POST">
+            <div class="input-group">
+                <label for="email">E-mail ou Usuário</label>
+                <input type="text" id="email" name="email" required>
             </div>
-            
-            <div id="registerForm" style="display:none;">
-                <h2>Criar Conta</h2>
-                <input type="text" placeholder="Nome completo" required>
-                <input type="email" placeholder="E-mail" required>
-                <input type="password" placeholder="Senha" required>
-                <button type="submit">Criar Conta</button>
-                <p>Já tem uma conta? <a href="#" id="showLogin">Acesse aqui</a></p>
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required>
             </div>
-        </div>
+            <button type="submit" class="login-button">Entrar</button>
+            <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+        </form>
     </div>
-
-    <script>
-        // Lógica JavaScript para os modais
-        const accountModal = document.getElementById('accountModal');
-        const myAccountLink = document.getElementById('myAccountLink');
-        const closeAccountModal = document.getElementById('closeAccountModal');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const showRegisterLink = document.getElementById('showRegister');
-        const showLoginLink = document.getElementById('showLogin');
-
-        // Abre o modal de conta
-        myAccountLink.onclick = function(event) {
-            event.preventDefault();
-            accountModal.style.display = "flex";
-            loginForm.style.display = "block";
-            registerForm.style.display = "none";
-        }
-
-        // Fecha o modal
-        closeAccountModal.onclick = function() {
-            accountModal.style.display = "none";
-        }
-
-        // Troca para o formulário de registro
-        showRegisterLink.onclick = function(event) {
-            event.preventDefault();
-            loginForm.style.display = "none";
-            registerForm.style.display = "block";
-        }
-
-        // Troca para o formulário de login
-        showLoginLink.onclick = function(event) {
-            event.preventDefault();
-            registerForm.style.display = "none";
-            loginForm.style.display = "block";
-        }
-
-        // Fecha o modal se o usuário clicar fora dele
-        window.onclick = function(event) {
-            if (event.target == accountModal) {
-                accountModal.style.display = "none";
-            }
-        }
-    </script>
-</body>
-</html>
+</main>
+   
 </body>
 </html>
