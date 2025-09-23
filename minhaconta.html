@@ -6,6 +6,7 @@
     <title>Unik Stil</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js"></script>
 </head>
 <body>
     <header class="top-bar">
@@ -34,7 +35,18 @@
         </ul>
         <div class="cart-icon">🛒</div>
     </nav>
-<div id="login-pane" class="pane active">
+
+
+    <!--Painel do professor login-->
+
+     <div class="container auth">
+    <div class="tabs">
+      <button class="tab active" data-tab="login-pane">Login</button>
+      <button class="tab" data-tab="register-pane">Cadastro</button>
+    </div>
+
+    <!-- PANE DE LOGIN -->
+    <div id="login-pane" class="pane active">
       <form id="loginForm" class="form">
         <div class="field">
           <label for="loginUser">Usuário ou E-mail</label>
@@ -95,12 +107,13 @@
     <p id="welcomeUser"></p>
     <button id="logoutBtn" class="btn">Sair</button>
   </div>
+
+ 
        
        
        
        
-       
-       
+     <!-- Login antigo
         <h2>Acesse sua conta</h2>
         <form action="#" method="POST">
             <div class="input-group">
@@ -115,7 +128,7 @@
             <a href="#" class="forgot-password">Esqueceu sua senha?</a>
         </form>
     </div>
-</main>
+</main> --> 
    
 </body>
 </html>
