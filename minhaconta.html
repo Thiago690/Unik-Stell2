@@ -34,49 +34,67 @@
         </ul>
         <div class="cart-icon">🛒</div>
     </nav>
-<main class="login-container">
-    <div class="login-box">
-       <div class="container section">
-    <!-- Cabeçalho -->
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-      <h2>Gerenciar Cadastros</h2>
-      <button id="logoutBtn" class="btn">Sair</button>
+<div id="login-pane" class="pane active">
+      <form id="loginForm" class="form">
+        <div class="field">
+          <label for="loginUser">Usuário ou E-mail</label>
+          <input id="loginUser" required>
+        </div>
+        <div class="field">
+          <label for="loginPass">Senha</label>
+          <input id="loginPass" type="password" required>
+        </div>
+        <button class="btn full" type="submit">Entrar</button>
+      </form>
+
+      <div class="divider">ou</div>
+
+      <!-- BOTÃO LOGIN COM GOOGLE -->
+      <button id="googleLoginBtn" class="btn full google-btn">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg&quot;
+             alt="Google logo" width="20" style="vertical-align:middle; margin-right:8px;">
+        Entrar com Google
+      </button>
     </div>
 
-    <!-- Tabela de usuários -->
-    <table id="usersTable" border="1" cellpadding="8" style="width:100%; border-collapse:collapse; margin-top:20px;">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Nascimento</th>
-          <th>Email</th>
-          <th>Telefone</th>
-          <th>Usuário</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-
-    <!-- Formulário de edição -->
-    <div id="editFormContainer" class="hidden" style="margin-top:30px;">
-      <h3>Editar Cadastro</h3>
-      <form id="editForm" class="form">
-        <input type="hidden" id="editId">
-        <div class="field"><label>Nome completo</label><input id="editNome" required /></div>
-        <div class="field"><label>Nascimento</label><input id="editNascimento" type="date" /></div>
-        <div class="field"><label>Email</label><input id="editEmail" type="email" required /></div>
-        <div class="field"><label>Telefone</label><input id="editTelefone" /></div>
-        <div class="field"><label>Usuário</label><input id="editUsuario" required /></div>
-        <button type="submit" class="btn">Salvar</button>
-        <button type="button" id="cancelEdit" class="btn ghost">Cancelar</button>
+    <!-- PANE DE CADASTRO -->
+    <div id="register-pane" class="pane">
+      <form id="registerForm" class="form">
+        <div class="field">
+          <label for="regNome">Nome completo</label>
+          <input id="regNome" required>
+        </div>
+        <div class="field">
+          <label for="regNascimento">Data de nascimento</label>
+          <input id="regNascimento" type="date">
+        </div>
+        <div class="field">
+          <label for="regEmail">E-mail</label>
+          <input id="regEmail" type="email" required>
+        </div>
+        <div class="field">
+          <label for="regTelefone">Telefone</label>
+          <input id="regTelefone">
+        </div>
+        <div class="field">
+          <label for="regUsuario">Usuário</label>
+          <input id="regUsuario" required>
+        </div>
+        <div class="field">
+          <label for="regSenha">Senha</label>
+          <input id="regSenha" type="password" required>
+        </div>
+        <button class="btn full" type="submit">Cadastrar</button>
       </form>
     </div>
 
-    <div id="msg" class="msg"></div>
+    <div id="authMsg" class="msg"></div>
   </div>
 
-  <script type="module" src="admin.js"></script>
+  <div id="privateArea" class="hidden center private">
+    <p id="welcomeUser"></p>
+    <button id="logoutBtn" class="btn">Sair</button>
+  </div>
        
        
        
