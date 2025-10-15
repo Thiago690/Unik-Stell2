@@ -1,8 +1,7 @@
-// app.js
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm&quot;;
 
 // ===== CONFIG SUPABASE =====
-const SUPABASE_URL = "https://tvpuleqsmtpqwkxmdzsd.supabase.co&quot;;   // troque
+const SUPABASE_URL = "https://tvpuleqsmtpqwkxmdzsd.supabase.co&quot;;  
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2cHVsZXFzbXRwcXdreG1kenNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2Mzc3MzYsImV4cCI6MjA3NDIxMzczNn0.FOQRXzykxjB7_89RUknTCj4G8K6bdQX1wypL7xwlPwg";             // troque
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
