@@ -6,48 +6,54 @@ const SUPABASE_URL = "https://tvpuleqsmtpqwkxmdzsd.supabase.co&quot;;   // troqu
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2cHVsZXFzbXRwcXdreG1kenNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2Mzc3MzYsImV4cCI6MjA3NDIxMzczNn0.FOQRXzykxjB7_89RUknTCj4G8K6bdQX1wypL7xwlPwg";             // troque
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// ===== ELEMENTOS =====
-const tabs = document.querySelectorAll('.tab');
-const panes = document.querySelectorAll('.pane');
-const loginForm = document.getElementById('loginForm');
-const registerForm = document.getElementById('registerForm');
-const authMsg = document.getElementById('authMsg');
-const privateArea = document.getElementById('privateArea');
-const welcomeUser = document.getElementById('welcomeUser');
-const logoutBtn = document.getElementById('logoutBtn');
+ // ===== ELEMENTOS =====
+  const tabs = document.querySelectorAll('.tab');
+  const panes = document.querySelectorAll('.pane');
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const authMsg = document.getElementById('authMsg');
+  const privateArea = document.getElementById('privateArea');
+  const welcomeUser = document.getElementById('welcomeUser');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const googleLoginBtn = document.getElementById("googleLoginBtn");
 
-const showMsg = (text, type = "success") => {
-  if (!authMsg) return;
-  authMsg.textContent = text;
-  authMsg.className = `msg ${type}`;
-};
-const clearMsg = () => showMsg("");
+  const showMsg = (text, type = "success") => {
+    if (!authMsg) return;
+    authMsg.textContent = text;
+    authMsg.className = `msg ${type}`;
+  };
+  const clearMsg = () => showMsg("");
 
-// ===== TROCA DE ABAS =====
-tabs.forEach(btn => {
-  btn.addEventListener('click', () => {
-    tabs.forEach(b => b.classList.remove('active'));
-    panes.forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
+  // ===== TROCA DE ABAS =====
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      panes.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab)?.classList.add('active');
+    });
   });
-});
 
-// ===== CADASTRO =====
-if (registerForm) {
-  registerForm.addEventListener('submit', async (e) => {
+  // ===== LOGIN COM GOOGLE =====
+  googleLoginBtn?.addEventListener("click", async () => {
+    const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
+    if (error) showMsg("Erro ao entrar com Google: " + error.message, "error");
+  });
+
+  // ===== CADASTRO =====
+  registerForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearMsg();
 
     const nome = document.getElementById('regNome').value.trim();
-    const dataNascimento = document.getElementById('regNascimento').value || null;
+    const dataNascimento = document.getElementById('regNascimento').value.trim();
     const email = document.getElementById('regEmail').value.trim().toLowerCase();
     const telefone = document.getElementById('regTelefone').value.trim();
     const usuario = document.getElementById('regUsuario').value.trim().toLowerCase();
     const senha = document.getElementById('regSenha').value;
 
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password: senha,
         options: {
@@ -55,64 +61,52 @@ if (registerForm) {
         }
       });
 
-      if (error) {
-        showMsg("Erro ao cadastrar: " + error.message, "error");
-        return;
-      }
+      if (error) return showMsg("Erro ao cadastrar: " + error.message, "error");
 
-      showMsg("Conta criada! Verifique seu e-mail se precisar confirmar.", "success");
+      showMsg("Conta criada! Verifique seu e-mail.", "success");
       registerForm.reset();
       document.querySelector('.tab[data-tab="login-pane"]').click();
-    } catch (err) {
-      console.error(err);
+    } catch {
       showMsg("Erro inesperado ao cadastrar.", "error");
     }
   });
-}
 
-// ===== LOGIN =====
-if (loginForm) {
-  loginForm.addEventListener('submit', async (e) => {
+  // ===== LOGIN =====
+  loginForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearMsg();
 
-    let userOrEmail = document.getElementById('loginUser').value.trim().toLowerCase();
+    const userOrEmail = document.getElementById('loginUser').value.trim().toLowerCase();
     const pass = document.getElementById('loginPass').value;
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email: userOrEmail,
         password: pass
       });
 
-      if (error) {
-        showMsg("Erro ao entrar: " + error.message, "error");
-        return;
-      }
+      if (error) return showMsg("Erro ao entrar: " + error.message, "error");
 
       showMsg("Login realizado com sucesso!", "success");
       loginForm.reset();
-    } catch (err) {
-      console.error(err);
+    } catch {
       showMsg("Erro inesperado no login.", "error");
     }
   });
-}
 
-// ===== ESTADO DE AUTENTICAÇÃO =====
-supabase.auth.onAuthStateChange((_event, session) => {
-  if (session?.user) {
-    privateArea.classList.remove('hidden');
-    welcomeUser.textContent = `Bem-vindo, ${session.user.user_metadata?.full_name || session.user.email}!`;
-  } else {
-    privateArea.classList.add('hidden');
-  }
-});
+  // ===== ESTADO DE AUTENTICAÇÃO =====
+  supabase.auth.onAuthStateChange((_event, session) => {
+    if (session?.user) {
+      privateArea.classList.remove('hidden');
+      welcomeUser.textContent = `Bem-vindo, ${session.user.user_metadata?.full_name || session.user.email}!`;
+    } else {
+      privateArea.classList.add('hidden');
+    }
+  });
 
-// ===== LOGOUT =====
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', async () => {
+  // ===== LOGOUT =====
+  logoutBtn?.addEventListener('click', async () => {
     await supabase.auth.signOut();
     showMsg("Você saiu da conta.", "success");
   });
-}
+});

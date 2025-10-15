@@ -1,4 +1,4 @@
- :root{
+:root{
   --bg:#0f172a;
   --surface:#111827;
   --text:#e5e7eb;
@@ -115,3 +115,129 @@ input:focus{ border-color:var(--accent); box-shadow:0 0 0 3px rgba(96,165,250,.2
   .menu.open{ display:flex; flex-direction:column; position:absolute; right:4%; top:60px; background:rgba(15,23,42,.95); padding:14px; border-radius:16px; }
   .hamburger{ display:block; }
 }
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0a192f; /* Azul escuro */
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: #112240;
+  padding: 10px 20px;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #64ffda;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav-links li {
+  margin-left: 15px;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #64ffda;
+}
+
+main {
+  margin-top: 80px; /* espaço para o menu fixo */
+}
+
+section {
+  padding: 50px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #64ffda;
+}
+
+ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+a {
+  color: #64ffda;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #fff;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #112240;
+  margin-top: 30px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-links li {
+    margin: 10px 0;
+  }
+}
+
+
+.container.auth {
+  margin-top: 120px; /* Ajuste conforme a altura do seu header */
+}
+
+
+.divider {
+      text-align: center;
+      margin: 15px 0;
+      color: #666;
+    }
+    .google-btn {
+      background: #fff;
+      border: 1px solid #ccc;
+      color: #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+    .google-btn:hover {
+      background: #f7f7f7;
+    }
