@@ -7,60 +7,60 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // 💡 CORREÇÃO 1 & 2: Encapsula todo o código dentro de DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
- // ===== ELEMENTOS =====
- const tabs = document.querySelectorAll('.tab');
- const panes = document.querySelectorAll('.pane');
- const loginForm = document.getElementById('loginForm');
- const registerForm = document.getElementById('registerForm');
- const authMsg = document.getElementById('authMsg');
- const privateArea = document.getElementById('privateArea');
- const welcomeUser = document.getElementById('welcomeUser');
- const logoutBtn = document.getElementById('logoutBtn');
- const googleLoginBtn = document.getElementById("googleLoginBtn");
+// ===== ELEMENTOS =====
+const tabs = document.querySelectorAll('.tab');
+const panes = document.querySelectorAll('.pane');
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+const authMsg = document.getElementById('authMsg');
+const privateArea = document.getElementById('privateArea');
+const welcomeUser = document.getElementById('welcomeUser');
+const logoutBtn = document.getElementById('logoutBtn');
+const googleLoginBtn = document.getElementById("googleLoginBtn");
 
- const showMsg = (text, type = "success") => {
-   if (!authMsg) return;
-   authMsg.textContent = text;
-   authMsg.className = `msg ${type}`;
- };
- const clearMsg = () => showMsg("");
+const showMsg = (text, type = "success") => {
+   if (!authMsg) return;
+   authMsg.textContent = text;
+   authMsg.className = `msg ${type}`;
+ };
+ const clearMsg = () => showMsg("");
 
- // ===== TROCA DE ABAS =====
- tabs.forEach(btn => {
-   btn.addEventListener('click', () => {
-     tabs.forEach(b => b.classList.remove('active'));
-     panes.forEach(p => p.classList.remove('active'));
-     btn.classList.add('active');
-     document.getElementById(btn.dataset.tab)?.classList.add('active');
-   });
- });
+ // ===== TROCA DE ABAS =====
+ tabs.forEach(btn => {
+   btn.addEventListener('click', () => {
+     tabs.forEach(b => b.classList.remove('active'));
+     panes.forEach(p => p.classList.remove('active'));
+     btn.classList.add('active');
+     document.getElementById(btn.dataset.tab)?.classList.add('active');
+   });
+ });
 
- // ===== LOGIN COM GOOGLE =====
- googleLoginBtn?.addEventListener("click", async () => {
-   const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
-   if (error) showMsg("Erro ao entrar com Google: " + error.message, "error");
- });
+ // ===== LOGIN COM GOOGLE =====
+ googleLoginBtn?.addEventListener("click", async () => {
+   const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
+   if (error) showMsg("Erro ao entrar com Google: " + error.message, "error");
+ });
 
- // ===== CADASTRO =====
- registerForm?.addEventListener('submit', async (e) => {
-   e.preventDefault();
-   clearMsg();
+ // ===== CADASTRO =====
+ registerForm?.addEventListener('submit', async (e) => {
+   e.preventDefault();
+   clearMsg();
 
-   const nome = document.getElementById('regNome').value.trim();
-   const dataNascimento = document.getElementById('regNascimento').value.trim();
-   const email = document.getElementById('regEmail').value.trim().toLowerCase();
-   const telefone = document.getElementById('regTelefone').value.trim();
-   const usuario = document.getElementById('regUsuario').value.trim().toLowerCase();
-   const senha = document.getElementById('regSenha').value;
+   const nome = document.getElementById('regNome').value.trim();
+   const dataNascimento = document.getElementById('regNascimento').value.trim();
+   const email = document.getElementById('regEmail').value.trim().toLowerCase();
+   const telefone = document.getElementById('regTelefone').value.trim();
+   const usuario = document.getElementById('regUsuario').value.trim().toLowerCase();
+   const senha = document.getElementById('regSenha').value;
 
-   try {
-     const { error } = await supabase.auth.signUp({
-       email,
-       password: senha,
-       options: {
-         data: { full_name: nome, dob: dataNascimento, phone: telefone, username: usuario }
-       }
-     });
+   try {
+     const { error } = await supabase.auth.signUp({
+       email,
+       password: senha,
+       options: {
+         data: { full_name: nome, dob: dataNascimento, phone: telefone, username: usuario }
+       }
+     });
 
      if (error) return showMsg("Erro ao cadastrar: " + error.message, "error");
 
