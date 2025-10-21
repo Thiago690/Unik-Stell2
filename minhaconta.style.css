@@ -11,7 +11,7 @@
     background-color: #fff;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgb(255, 255, 255);
     text-align: center;
     width: 100%;
     max-width: 400px;
@@ -20,7 +20,7 @@
 .login-box h2 {
     font-family: 'Oswald', sans-serif;
     font-size: 2em;
-    color: #333;
+    color: #ffffff;
     margin-bottom: 25px;
 }
 
@@ -32,7 +32,7 @@
 .input-group label {
     display: block;
     margin-bottom: 8px;
-    color: #555;
+    color: #ffffff;
     font-weight: bold;
 }
 
@@ -48,7 +48,7 @@
 .login-button {
     width: 100%;
     padding: 15px;
-    background-color: #000;
+    background-color: #ffffff;
     color: #ffd000;
     border: none;
     border-radius: 5px;
