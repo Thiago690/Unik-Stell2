@@ -49,7 +49,7 @@
     width: 100%;
     padding: 15px;
     background-color: #000;
-    color: #fff;
+    color: #ffd000;
     border: none;
     border-radius: 5px;
     font-size: 1.1em;
@@ -61,18 +61,18 @@
 }
 
 .login-button:hover {
-    background-color: #444;
+    background-color: #ffffff;
 }
 
 .forgot-password {
     display: block;
     margin-top: 15px;
-    color: #000;
+    color: #ffd000;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .forgot-password:hover {
-    color: #555;
+    color: #555555;
 }
