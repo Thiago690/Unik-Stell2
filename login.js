@@ -4,10 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
   // ===== CONFIG SUPABASE =====
-const SUPABASE_URL = "https://tvpuleqsmtpqwkxmdzsd.supabase.co";  
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2cHVsZXFzbXRwcXdreG1kenNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2Mzc3MzYsImV4cCI6MjA3NDIxMzczNn0.FOQRXzykxjB7_89RUknTCj4G8K6bdQX1wypL7xwlPwg";             
+const SUPABASE_URL = "https://xxxxxxxxxxxxxxxxxxxx.supabase.co";   // troque
+const SUPABASE_ANON_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx um  código bem grande vai aqui xxxxxxxx";             // troque
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
 
   // ===== ELEMENTOS =====
   const tabs = document.querySelectorAll('.tab');
