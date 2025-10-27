@@ -1,0 +1,16 @@
+/* Opções de Tamanho */
+        /* ... (código anterior) */
+
+        .size-button.selected {
+            background-color: #ffc107; /* AMARELO para combinar com o botão de COMPRAR */
+            color: #000; /* Cor do texto preta */
+            border-color: #ffc107; /* Borda amarela */
+        }
+
+        /* Botão de Compra: COR ALTERADA PARA AMARELO */
+        .buy-button {
+            /* ... (código anterior) */
+            background-color: #ffc107; /* AMARELO */
+            color: #000;
+            /* ... (código anterior) */
+        }

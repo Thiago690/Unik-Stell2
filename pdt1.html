@@ -56,7 +56,6 @@
             transition: border 0.2s;
         }
 
-        /* Cor de destaque da miniatura mudada para preto para combinar com o destaque da cor */
         .preview-item.selected {
             border: 2px solid #000;
         }
@@ -129,10 +128,9 @@
             border-color: #000;
         }
 
-        /* Cores de Exemplo: Adicionado Branco e removido Marrom, Preto e Verde */
+        /* Cor Branca Única */
         .color-branco { 
             background-color: #ffffff;
-            /* Adicionado uma sombra suave para o branco aparecer em fundo branco */
             box-shadow: 0 0 0 1px #ccc inset; 
         }
 
@@ -156,12 +154,13 @@
         }
 
         .size-button.selected {
-            background-color: #000;
-            color: #fff;
-            border-color: #000;
+            /* AJUSTE AQUI: O botão selecionado fica amarelo */
+            background-color: #ffc107; 
+            color: #000; 
+            border-color: #ffc107; 
         }
 
-        /* Botão de Compra: COR ALTERADA PARA AMARELO */
+        /* Botão de Compra: COR AMARELA */
         .buy-button {
             width: 100%;
             padding: 15px;
@@ -223,7 +222,7 @@
                 <div class="preview-item" data-color="branco" data-img-url="https://i.imgur.com/G5yN5r7.png">
                     <img src="https://i.imgur.com/G5yN5r7.png" alt="Miniatura Branca 2">
                 </div>
-                </div>
+            </div>
             <div class="main-image">
                 <img id="main-product-image" src="https://i.imgur.com/gK9qQxY.png" alt="Camiseta Ribana Branca">
             </div>
