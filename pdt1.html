@@ -3,42 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unik Stil</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header class="top-bar">
-        <div class="top-item">
-            <span class="icon">🔒</span>
-            <span class="top-text">COMPRA SEGURA</span>
-        </div>
-        <div class="top-item">
-            <span class="icon">🛻</span>
-            <span class="top-text">FRETE GRÁTIS</span>
-        </div>
-        <div class="top-item">
-            <span class="icon">💳</span>
-            <span class="top-text">PARCELE EM ATÉ 12X</span>
-        </div>
-    </header>
-
-    <nav class="main-menu">
-        <div class="logo">UNIK <span>STIL</span></div>
-        <ul>
-            <li><a href="#">INÍCIO</a></li>
-            <li><a href="qsomos.html">PERGUNTAS FREQUENTES</a></li>
-            <li><a href="minhaconta.html">MINHA CONTA</a></li>
-            <li><a href="dicas.html">DICAS DE CUIDADO</a></li>
-            <li><a href="#">RASTREAMENTO</a></li>
-        </ul>
-        <div class="cart-icon">🛒</div>
-    </nav>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Produto - Simulação</title>
     <style>
         /* Estilos básicos */
@@ -162,20 +126,173 @@
 
         /* Cores de Exemplo */
         .color-marrom { background-color: #8b4513; }
-        .
+        .color-preto { background-color: #000; }
+        .color-verde { background-color: #4CAF50; }
 
+        /* Opções de Tamanho */
+        .size-options {
+            margin-bottom: 30px;
+        }
 
+        .size-button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
 
+        .size-button:hover {
+            border-color: #000;
+        }
 
+        .size-button.selected {
+            background-color: #000;
+            color: #fff;
+            border-color: #000;
+        }
 
-      <footer class="site-footer">
-        <div class="footer-container">
-            <p>UNIK STILL</p>
-            <p>Feito pelos alunos Fabiano, Thiago e Matheus - Todos os direitos reservados - 2025</p>
+        /* Botão de Compra */
+        .buy-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #a52a2a; /* Vermelho/Marrom */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .buy-button:hover {
+            background-color: #8b2323;
+        }
+
+        .product-info {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="product-images">
+            <div class="image-previews" id="image-previews">
+                <div class="preview-item selected" data-color="marrom" data-img-url="https://i.imgur.com/8Qp4Z0J.png">
+                    <img src="https://i.imgur.com/8Qp4Z0J.png" alt="Miniatura Marrom 1">
+                </div>
+                <div class="preview-item" data-color="marrom" data-img-url="https://i.imgur.com/G5yN5r7.png">
+                    <img src="https://i.imgur.com/G5yN5r7.png" alt="Miniatura Marrom 2">
+                </div>
+                <div class="preview-item" data-color="preto" data-img-url="https://i.imgur.com/5uLzK4Z.png">
+                    <img src="https://i.imgur.com/5uLzK4Z.png" alt="Miniatura Preto 1">
+                </div>
+                <div class="preview-item" data-color="verde" data-img-url="https://i.imgur.com/h5vL4jY.png">
+                    <img src="https://i.imgur.com/h5vL4jY.png" alt="Miniatura Verde 1">
+                </div>
+            </div>
+            <div class="main-image">
+                <img id="main-product-image" src="https://i.imgur.com/8Qp4Z0J.png" alt="Camiseta Ribana Marrom">
+            </div>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
-    
+        <div class="product-details">
+            <h1>Camiseta Em Ribana Com Textura Aveludada Marrom</h1>
+            <span class="rating">★ 4.6</span>
+
+            <span class="price-old">De R$ 119,90</span>
+            <span class="price-current">Por R$ 99,90</span>
+            <span class="installment">3x de R$ 33,30 sem juros no Cartão Exemplo</span>
+
+            <div class="color-options">
+                <p>Cor: <span id="selected-color-name">Marrom</span></p>
+                <div class="color-circle color-marrom selected" data-color="Marrom"></div>
+                <div class="color-circle color-preto" data-color="Preto"></div>
+                <div class="color-circle color-verde" data-color="Verde"></div>
+            </div>
+
+            <div class="size-options">
+                <p>Tamanho:</p>
+                <button class="size-button" data-size="P">P</button>
+                <button class="size-button" data-size="M">M</button>
+                <button class="size-button" data-size="G">G</button>
+            </div>
+
+            <button class="buy-button" onclick="alert('Produto adicionado ao carrinho! Tamanho: ' + getSelectedSize() + ', Cor: ' + document.getElementById('selected-color-name').textContent);">COMPRAR</button>
+
+            <div class="product-info">
+                <h2>Sobre o produto:</h2>
+                <p>Camiseta masculina confeccionada em tecido de ribana com textura aveludada. Modelagem ajustada, gola redonda e mangas curtas. Perfeita para um visual moderno e confortável.</p>
+                <p>Vendido e Entregue por: **Loja Exemplo**</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainImage = document.getElementById('main-product-image');
+            const colorCircles = document.querySelectorAll('.color-circle');
+            const sizeButtons = document.querySelectorAll('.size-button');
+            const previewItems = document.querySelectorAll('.preview-item');
+            const selectedColorName = document.getElementById('selected-color-name');
+
+            // --- Função de Seleção de Cor/Imagem ---
+            colorCircles.forEach(circle => {
+                circle.addEventListener('click', () => {
+                    // 1. Mudar o destaque da cor
+                    colorCircles.forEach(c => c.classList.remove('selected'));
+                    circle.classList.add('selected');
+
+                    // 2. Atualizar o nome da cor
+                    const newColor = circle.getAttribute('data-color');
+                    selectedColorName.textContent = newColor;
+
+                    // 3. Atualizar a imagem principal com a primeira miniatura da cor selecionada
+                    const firstImageForColor = Array.from(previewItems).find(item => item.getAttribute('data-color').toLowerCase() === newColor.toLowerCase());
+
+                    if (firstImageForColor) {
+                        mainImage.src = firstImageForColor.getAttribute('data-img-url');
+                        
+                        // 4. Mudar o destaque da miniatura
+                        previewItems.forEach(p => p.classList.remove('selected'));
+                        firstImageForColor.classList.add('selected');
+                    }
+                });
+            });
+
+            // --- Função de Mudança de Miniatura ---
+            previewItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // 1. Mudar o destaque da miniatura
+                    previewItems.forEach(p => p.classList.remove('selected'));
+                    item.classList.add('selected');
+
+                    // 2. Mudar a imagem principal
+                    mainImage.src = item.getAttribute('data-img-url');
+                });
+            });
+
+
+            // --- Função de Seleção de Tamanho ---
+            sizeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    sizeButtons.forEach(b => b.classList.remove('selected'));
+                    button.classList.add('selected');
+                });
+            });
+
+            // Adiciona uma função para pegar o tamanho selecionado no clique do botão COMPRAR
+            window.getSelectedSize = function() {
+                const selectedSize = document.querySelector('.size-button.selected');
+                return selectedSize ? selectedSize.getAttribute('data-size') : 'Nenhum selecionado';
+            }
+        });
+    </script>
 </body>
 </html>
