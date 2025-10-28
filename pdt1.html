@@ -1,114 +1,21 @@
-
-body {
-    margin: 0;
-    font-family: 'Roboto', Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-}
-
-.top-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    font-size: 14px;
-    text-transform: uppercase;
-}
-
-.top-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.top-item .icon {
-    font-size: 20px;
-}
-
-.main-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 15px 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo {
-    font-family: 'Oswald', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-}
-
-.logo span {
-    color: #ffd700;
-}
-
-.main-menu ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
-}
-
-.main-menu a {
-    text-decoration: none;
-    color: #ffffff;
-    color: #000000;
-    font-weight: 700;
-    transition: color 0.3s;
-}
-
-.main-menu a:hover {
-    color: #ffd700;
-}
-
-.cart-icon {
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.carousel-container {
-    position: relative;
-    max-width: 100%;
-    margin: auto;
-    overflow: hidden;
-}
-
-.carousel-slide {
-    display: none;
-}
-
-.carousel-slide img {
-    width: 100%;
-    height: auto;
-    vertical-align: middle;
-}
-
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@keyframes fade {
-    from {
-        opacity: .4
-    }
-    to {
-        opacity: 1
-    }
-}
-
-
-
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unik Stil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto - Simulação</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
 
         .container {
             display: flex;
@@ -275,106 +182,158 @@ body {
             border-top: 1px solid #eee;
             padding-top: 20px;
         }
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="top-item">
+            <span class="icon">🔒</span>
+            <span class="top-text">COMPRA SEGURA</span>
+        </div>
+        <div class="top-item">
+            <span class="icon">🛻</span>
+            <span class="top-text">FRETE GRÁTIS</span>
+        </div>
+        <div class="top-item">
+            <span class="icon">💳</span>
+            <span class="top-text">PARCELE EM ATÉ 12X</span>
+        </div>
+    </header>
 
-.site-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    font-size: 14px;
-}
+    <nav class="main-menu">
+        <div class="logo">UNIK <span>STIL</span></div>
+        <ul>
+            <li><a href="index.html">INÍCIO</a></li>
+            <li><a href="qsomos.html">PERGUNTAS FREQUENTES</a></li>
+            <li><a href="minhaconta.html">MINHA CONTA</a></li>
+            <li><a href="dicas.html">DICAS DE CUIDADO</a></li>
+            <li><a href="rastreamento.html">RASTREAMENTO</a></li>
+        </ul>
+        <div class="cart-icon">🛒</div>
+    </nav>
+    
 
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
+    <div class="container">
+        <div class="product-images">
+            <div class="image-previews" id="image-previews">
+                <div class="preview-item selected" data-color="branco" data-img-url="511ed1eb-6c29-49f3-bbf8-7b5b27cc2ee3.png">
+                    <img src="511ed1eb-6c29-49f3-bbf8-7b5b27cc2ee3.png" alt="Miniatura Branca 1">
+                </div>
+                <div class="preview-item" data-color="branco" data-img-url="88662b5f-d83d-4abc-b0dc-aa113926962d.png">
+                    <img src="88662b5f-d83d-4abc-b0dc-aa113926962d.png" alt="Miniatura Branca 2">
+                </div>
+                <div class="preview-item" data-color="branco" data-img-url="Copilot_20251027_183851.png">
+                    <img src="Copilot_20251027_183851.png" alt="Miniatura Branca 3">
+                </div>
+                <div class="preview-item" data-color="branco" data-img-url="Copilot_20251027_190226.png">
+                    <img src="Copilot_20251027_190226.png" alt="Miniatura Branca 4">
+                </div>
+            </div>
+            <div class="main-image">
+                <img id="main-product-image" src="511ed1eb-6c29-49f3-bbf8-7b5b27cc2ee3.png" alt="Camiseta branca boxy">
+            </div>
+        </div>
 
-.site-footer p {
-    margin: 5px 0;
-}
+        <div class="product-details">
+            <h1>Camiseta branca boxy </h1>
+            <span class="rating">★ 4.6</span>
 
-/* Responsiveness */
-@media (max-width: 768px) {
-    .top-bar {
-        flex-direction: column;
-        gap: 10px;
-    }
+            <span class="price-old">De R$ 119,90</span>
+            <span class="price-current">Por R$ 99,90</span>
+            <span class="installment"></span>
 
-    .main-menu {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-    }
+            <div class="color-options">
+                <p>Cor: <span id="selected-color-name">Branco</span></p>
+                <div class="color-circle color-branco selected" data-color="Branco"></div>
+            </div>
 
-    .main-menu ul {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
+            <div class="size-options">
+                <p>Tamanho:</p>
+                <button class="size-button" data-size="P">P</button>
+                <button class="size-button" data-size="M">M</button>
+                <button class="size-button" data-size="G">G</button>
+            </div>
 
-    .cart-icon {
-        margin-top: 10px;
-    }
+            <button class="buy-button" onclick="alert('Produto adicionado ao carrinho! Tamanho: ' + getSelectedSize() + ', Cor: ' + document.getElementById('selected-color-name').textContent);">COMPRAR</button>
 
-    .section-title {
-        font-size: 28px;
-    }
+            <div class="product-info">
+                <h2>Sobre o produto:</h2>
+                <p> camiseta boxy UnikStil é a peça-chave para quem busca conforto e estilo no dia a dia. Confeccionada em 100% algodão de alta qualidade. Possui modelagem baggy, caimento amplo, prática pro dia a dia.</p>
+                <p>Vendido e Entregue por: UnikStil </p>
+            </div>
+        </div>
+    </div>
 
-    /* Container principal do carrossel */
-.carousel-container {
-    max-width: 100%; /* Ajuste conforme a largura desejada */
-    position: relative; /* Essencial para posicionar os botões */
-    margin: auto;
-    overflow: hidden; /* Garante que só um slide seja visível por vez */
-}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainImage = document.getElementById('main-product-image');
+            const colorCircles = document.querySelectorAll('.color-circle');
+            const sizeButtons = document.querySelectorAll('.size-button');
+            const previewItems = document.querySelectorAll('.preview-item');
+            const selectedColorName = document.getElementById('selected-color-name');
 
-/* Os slides do carrossel (que contêm as imagens) */
-.carousel-slide {
-    display: none; /* INICIALMENTE OCULTA TODOS. O JS mostra o primeiro. */
-}
+            // --- Função de Seleção de Cor/Imagem ---
+            colorCircles.forEach(circle => {
+                circle.addEventListener('click', () => {
+                    // 1. Mudar o destaque da cor
+                    colorCircles.forEach(c => c.classList.remove('selected'));
+                    circle.classList.add('selected');
 
-/* Estilo para as imagens dentro dos slides */
-.carousel-slide img {
-    width: 100%;
-    height: auto;
-    vertical-align: middle;
-}
+                    // 2. Atualizar o nome da cor
+                    const newColor = circle.getAttribute('data-color');
+                    selectedColorName.textContent = newColor;
 
-/* Estilo dos botões "Anterior" e "Próximo" */
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white; /* Cor dos ícones */
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-    background-color: rgba(0,0,0,0.4); /* Fundo semi-transparente */
-}
+                    // 3. Atualizar a imagem principal com a primeira miniatura da cor selecionada
+                    const firstImageForColor = Array.from(previewItems).find(item => item.getAttribute('data-color').toLowerCase() === newColor.toLowerCase());
 
-/* Posição do botão "Próximo" à direita */
-.next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
+                    if (firstImageForColor) {
+                        mainImage.src = firstImageForColor.getAttribute('data-img-url');
+                        
+                        // 4. Mudar o destaque da miniatura
+                        previewItems.forEach(p => p.classList.remove('selected'));
+                        firstImageForColor.classList.add('selected');
+                    }
+                });
+            });
 
-/* Efeito hover nos botões */
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
-}
+            // --- Função de Mudança de Miniatura ---
+            previewItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // 1. Mudar o destaque da miniatura
+                    previewItems.forEach(p => p.classList.remove('selected'));
+                    item.classList.add('selected');
 
-/* Opcional: Adicionar a transição de fade (efeito mais suave) */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
+                    // 2. Mudar a imagem principal
+                    mainImage.src = item.getAttribute('data-img-url');
+                });
+            });
 
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
+
+            // --- Função de Seleção de Tamanho ---
+            sizeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    sizeButtons.forEach(b => b.classList.remove('selected'));
+                    button.classList.add('selected');
+                });
+            });
+
+            // Adiciona uma função para pegar o tamanho selecionado no clique do botão COMPRAR
+            window.getSelectedSize = function() {
+                const selectedSize = document.querySelector('.size-button.selected');
+                return selectedSize ? selectedSize.getAttribute('data-size') : 'Nenhum selecionado';
+            }
+        });
+    </script>
+</body>
+</html>
+ <footer class="site-footer">
+        <div class="footer-container">
+            <p>UNIK STILL</p>
+            <p>Feito pelos alunos Fabiano, Thiago e Matheus - Todos os direitos reservados - 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
