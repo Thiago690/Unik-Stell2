@@ -34,41 +34,7 @@
         </ul>
         <div class="cart-icon">🛒</div>
     </nav>
-    </main>
-
-    <script>
-        let slideIndex = 1; // Começa na primeira imagem
-        showSlides(slideIndex); // Chama a função para mostrar a primeira imagem
-
-        // Função para avançar ou retroceder os slides
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        // Função principal para mostrar os slides
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("carousel-slide");
-            
-            // Se o índice for maior que o número de slides, volta para o primeiro
-            if (n > slides.length) {
-                slideIndex = 1;
-            }    
-            
-            // Se o índice for menor que 1, vai para o último
-            if (n < 1) {
-                slideIndex = slides.length;
-            }
-            
-            // Oculta todos os slides
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            
-            // Mostra o slide atual
-            slides[slideIndex - 1].style.display = "block";  
-        }
-    </script>
+    
         <section class="product-section">
             <h2 class="section-title">DESTAQUES</h2>
             <div class="product-grid">
@@ -108,7 +74,7 @@
                         <p class="product-description"></p>
                     </div>
                 </a>
-                <a href="pdrt5.html" class="Camisa de botão Azul">
+                <a href="pdrt5.html" class="Camisa de botão aAzul">
                     <img src="camisa.png" alt="Produto 5">
                     <div class="product-info">
                         <h3>Nome do Produto 5</h3>
@@ -141,4 +107,41 @@
     
 </body>
 </html>
-.
+
+</main>
+
+    <script>
+        let slideIndex = 1; // Começa na primeira imagem
+        showSlides(slideIndex); // Chama a função para mostrar a primeira imagem
+
+        // Função para avançar ou retroceder os slides
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Função principal para mostrar os slides
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("carousel-slide");
+            
+            // Se o índice for maior que o número de slides, volta para o primeiro
+            if (n > slides.length) {
+                slideIndex = 1;
+            }    
+            
+            // Se o índice for menor que 1, vai para o último
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            
+            // Oculta todos os slides
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            
+            // Mostra o slide atual
+            slides[slideIndex - 1].style.display = "block";  
+        }
+    </script>
+    </body>
+</html>
