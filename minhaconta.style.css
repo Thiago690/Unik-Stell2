@@ -311,6 +311,10 @@ body {
     color: var(--verde);
 }
 
+.hidden {
+    display: none !important;
+}
+
 /* RESPONSIVO */
 @media (max-width: 900px){
   .cards{ grid-template-columns:1fr 1fr; }
