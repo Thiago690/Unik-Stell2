@@ -1,8 +1,8 @@
 // --- SUPABASE CONFIG ---
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-const SUPABASE_URL = "do seu supabase";
-const SUPABASE_ANON_KEY = "sua chave";
+const SUPABASE_URL = "https://tvpuleqsmtpqwkxmdzsd.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNiZnJqZnFhcmF4ZnVsd3FzZWx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5Mzg2ODUsImV4cCI6MjA3MzUxNDY4NX0.YPJ0zYeXU6UtacOCWJ2JM6NAUQIu0WwrN3B8aQiLMY0";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -33,13 +33,13 @@ const backToAuth = document.getElementById("backToAuth");
 function showAuthMsg(text = "", type = "") {
   if (!authMsg) return;
   authMsg.textContent = text;
-  authMsg.className = type ? msg ${type} : "msg";
+  authMsg.className = type ? `msg ${type}` : "msg";
 }
 
 function showMsg(text = "", type = "") {
   if (!msgBox) return;
   msgBox.textContent = text;
-  msgBox.className = type ? msg ${type} : "msg";
+  msgBox.className = type ? `msg ${type}` : "msg";
 }
 
 // --- Tab switching ---
@@ -346,7 +346,7 @@ function showWelcomeArea(name) {
     welcomeArea.classList.remove('hidden');
     // opcional: atualizar o título da página
     const pageTitle = document.getElementById('pageTitle');
-    if (pageTitle) pageTitle.textContent = Bem-vindo(a), ${name || 'Usuário'};
+    if (pageTitle) pageTitle.textContent = `Bem-vindo(a), ${name || 'Usuário'}`;
   }
 }
 
