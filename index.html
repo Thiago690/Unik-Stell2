@@ -35,6 +35,7 @@
         <div class="cart-icon">🛒</div>
     </nav>
     
+
         <section class="product-section">
             <h2 class="section-title">DESTAQUES</h2>
             <div class="product-grid">
@@ -108,40 +109,47 @@
 </body>
 </html>
 
-</main>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrossel Separado</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
 
-    <script>
-        let slideIndex = 1; // Começa na primeira imagem
-        showSlides(slideIndex); // Chama a função para mostrar a primeira imagem
+    <div class="carousel-container">
+        
+        <div class="carousel-slide fade">
+            <img src="https://via.placeholder.com/800x400/FF5733/FFFFFF?text=Slide+1+-+Laranja" alt="Primeira Imagem">
+        </div>
 
-        // Função para avançar ou retroceder os slides
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
+        <div class="carousel-slide fade">
+            <img src="https://via.placeholder.com/800x400/33FF57/FFFFFF?text=Slide+2+-+Verde" alt="Segunda Imagem">
+        </div>
 
-        // Função principal para mostrar os slides
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("carousel-slide");
-            
-            // Se o índice for maior que o número de slides, volta para o primeiro
-            if (n > slides.length) {
-                slideIndex = 1;
-            }    
-            
-            // Se o índice for menor que 1, vai para o último
-            if (n < 1) {
-                slideIndex = slides.length;
-            }
-            
-            // Oculta todos os slides
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            
-            // Mostra o slide atual
-            slides[slideIndex - 1].style.display = "block";  
-        }
-    </script>
-    </body>
+        <div class="carousel-slide fade">
+            <img src="https://via.placeholder.com/800x400/3357FF/FFFFFF?text=Slide+3+-+Azul" alt="Terceira Imagem">
+        </div>
+        
+        <div class="carousel-slide fade">
+            <img src="https://via.placeholder.com/800x400/F333FF/FFFFFF?text=Slide+4+-+Roxo" alt="Quarta Imagem">
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    
+    <div class="dot-container">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span> 
+      <span class="dot" onclick="currentSlide(4)"></span> 
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
 </html>
