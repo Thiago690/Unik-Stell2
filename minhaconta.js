@@ -1,8 +1,8 @@
 // --- SUPABASE CONFIG ---
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-const SUPABASE_URL = "cola do seu supabase";
-const SUPABASE_ANON_KEY = "sua chave do supabase";
+const SUPABASE_URL = "do seu supabase";
+const SUPABASE_ANON_KEY = "sua chave";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
