@@ -1,0 +1,5 @@
+/* Cor Branca Única */
+.color-branco { 
+    background-color: #ffffff; /* Fundo branco */
+    box-shadow: 0 0 0 1px #ccc inset; /* Adiciona uma borda interna leve para que o branco apareça em fundo branco */
+}
