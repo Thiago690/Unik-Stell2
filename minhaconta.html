@@ -1,39 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro | Exemplo</title>
-    <link rel="stylesheet" href="minhaconta.style.css">
+  <meta charset="utf-8" />
+  <title>Cadastro/Login - Supabase</title>
+  <link rel="stylesheet" href="minhaconta.style.css">
+  
 </head>
 <body>
-    <div class="cadastro-container">
-        <h2>Criar Conta</h2>
-        <form action="/cadastrar" method="POST" class="cadastro-form">
-            <div class="input-group">
-                <label for="nome">Nome Completo</label>
-                <input type="text" id="nome" name="nome" required>
-            </div>
-            <div class="input-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="input-group">
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" required>
-            </div>
-            <div class="input-group">
-                <label for="confirmar-senha">Confirmar Senha</label>
-                <input type="password" id="confirmar-senha" name="confirmar-senha" required>
-            </div>
-            
-            <button type="submit" class="btn-primary">Cadastrar</button>
-        </form>
 
-        <div class="opcoes-adicionais">
-            <p>Já tem uma conta? <a href="/login.html">Fazer Login</a></p>
-            <p><a href="/trocar-senha.html">Esqueceu a Senha?</a></p>
-        </div>
+  <!-- Menu fixo -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">TCC em Sistemas</h1>
+      <ul class="nav-links">
+        <li><a href="#sobre">O que é TCC</a></li>
+        <li><a href="#importancia">Importância</a></li>
+        <li><a href="#etapas">Etapas</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#dicas">Dicas</a></li>
+        <li><a href="#futuro">Futuro</a></li>
+        <li><a href="#links">Links Úteis</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <div class="container auth">
+    <div class="tabs">
+      <button class="tab active" data-tab="login-pane">Login</button>
+      <button class="tab" data-tab="register-pane">Cadastro</button>
     </div>
+
+    <!-- PANE DE LOGIN -->
+    <div id="login-pane" class="pane active">
+      <form id="loginForm" class="form">
+        <div class="field">
+          <label for="loginUser">Usuário ou E-mail</label>
+          <input id="loginUser" required>
+        </div>
+        <div class="field">
+          <label for="loginPass">Senha</label>
+          <input id="loginPass" type="password" required>
+        </div>
+        <button class="btn full" type="submit">Entrar</button>
+      </form>
+
+      <div class="divider">ou</div>
+
+      <!-- BOTÃO LOGIN COM GOOGLE -->
+      <button id="googleLoginBtn" class="btn full google-btn">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+             alt="Google logo" width="20" style="vertical-align:middle; margin-right:8px;">
+        Entrar com Google
+      </button>
+    </div>
+
+    <!-- PANE DE CADASTRO -->
+    <div id="register-pane" class="pane">
+      <form id="registerForm" class="form">
+        <div class="field">
+          <label for="regNome">Nome completo</label>
+          <input id="regNome" required>
+        </div>
+        <div class="field">
+          <label for="regNascimento">Data de nascimento</label>
+          <input id="regNascimento" type="date">
+        </div>
+        <div class="field">
+          <label for="regEmail">E-mail</label>
+          <input id="regEmail" type="email" required>
+        </div>
+        <div class="field">
+          <label for="regTelefone">Telefone</label>
+          <input id="regTelefone">
+        </div>
+        <div class="field">
+          <label for="regUsuario">Usuário</label>
+          <input id="regUsuario" required>
+        </div>
+        <div class="field">
+          <label for="regSenha">Senha</label>
+          <input id="regSenha" type="password" required>
+        </div>
+        <button class="btn full" type="submit">Cadastrar</button>
+      </form>
+    </div>
+
+    <div id="authMsg" class="msg"></div>
+  </div>
+
+  <div id="privateArea" class="hidden center private">
+    <p id="welcomeUser"></p>
+    <button id="logoutBtn" class="btn">Sair</button>
+  </div>
+
+  <footer>
+    <p>© 2025 - A importância do TCC em Desenvolvimento de Sistemas | Profº Antonio Carlos</p>
+  </footer>
+
+
+ <script type="module" src="login.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 </body>
 </html>
