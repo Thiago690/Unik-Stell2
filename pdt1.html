@@ -1,329 +1,333 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unik Stil</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Produto - Simulação</title>
-    <style>
-        /* Estilos básicos */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f8f8f8;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto - Simulação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Seção de Imagens */
+        .product-images {
+            display: flex;
+            width: 50%;
+        }
+
+        .image-previews {
+            width: 100px;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-item {
+            width: 80px;
+            height: 100px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: #eee;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: border 0.2s;
+        }
+
+        .preview-item.selected {
+            border: 2px solid #000;
+        }
+
+        .main-image {
+            flex-grow: 1;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+        }
+
+        /* Seção de Detalhes */
+        .product-details {
+            width: 50%;
+            padding-left: 40px;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        .rating {
+            color: orange;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .price-old {
+            color: #888;
+            text-decoration: line-through;
+            font-size: 0.9em;
+        }
+
+        .price-current {
+            font-size: 1.8em;
+            color: #000;
+            font-weight: bold;
+            display: block;
+            margin: 5px 0 10px;
+        }
+
+        .installment {
+            color: #555;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .color-options {
+            margin-bottom: 20px;
+        }
+
+        .color-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+            border: 2px solid #ccc;
+            transition: border 0.2s;
+        }
+
+        .color-circle:hover, .color-circle.selected {
+            border-color: #000;
+        }
+
+        /* Cor Branca (Original) */
+        .color-branco { 
+            background-color: #ffffff;
+            box-shadow: 0 0 0 1px #ccc inset; 
+        }
+        
+        /* NOVO ESTILO: Cor Preta */
+        .color-preto { 
+            background-color: #000000;
+            /* O texto da cor selecionada deve ter bom contraste, mas como é só um círculo, não precisa de box-shadow */
         }
 
-        .container {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+        /* Opções de Tamanho */
+        .size-options {
+            margin-bottom: 30px;
+        }
 
-        /* Seção de Imagens */
-        .product-images {
-            display: flex;
-            width: 50%;
-        }
+        .size-button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
 
-        .image-previews {
-            width: 100px;
-            margin-right: 20px;
-            display: flex;
-            flex-direction: column;
-        }
+        .size-button:hover {
+            border-color: #000;
+        }
 
-        .preview-item {
-            width: 80px;
-            height: 100px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            cursor: pointer;
-            overflow: hidden;
-            background-color: #eee;
-        }
+        .size-button.selected {
+            /* O botão selecionado fica amarelo */
+            background-color: #ffc107; 
+            color: #000; 
+            border-color: #ffc107; 
+        }
 
-        .preview-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: border 0.2s;
-        }
+        /* Botão de Compra: COR AMARELA */
+        .buy-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #ffc107; /* AMARELO */
+            color: #000; /* Cor do texto alterada para preto para contraste */
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 15px;
+        }
 
-        .preview-item.selected {
-            border: 2px solid #000;
-        }
+        .buy-button:hover {
+            background-color: #e0a800; /* Um tom de amarelo mais escuro no hover */
+        }
 
-        .main-image {
-            flex-grow: 1;
-        }
-
-        .main-image img {
-            width: 100%;
-            height: auto;
-            max-height: 600px;
-            object-fit: contain;
-        }
-
-        /* Seção de Detalhes */
-        .product-details {
-            width: 50%;
-            padding-left: 40px;
-        }
-
-        h1 {
-            font-size: 1.5em;
-            margin-top: 0;
-        }
-
-        .rating {
-            color: orange;
-            font-weight: bold;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .price-old {
-            color: #888;
-            text-decoration: line-through;
-            font-size: 0.9em;
-        }
-
-        .price-current {
-            font-size: 1.8em;
-            color: #000;
-            font-weight: bold;
-            display: block;
-            margin: 5px 0 10px;
-        }
-
-        .installment {
-            color: #555;
-            font-size: 0.9em;
-            margin-bottom: 20px;
-        }
-
-        .color-options {
-            margin-bottom: 20px;
-        }
-
-        .color-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 10px;
-            cursor: pointer;
-            border: 2px solid #ccc;
-            transition: border 0.2s;
-        }
-
-        .color-circle:hover, .color-circle.selected {
-            border-color: #000;
-        }
-
-        /* Cor Branca Única */
-        .color-branco { 
-            background-color: #ffffff;
-            box-shadow: 0 0 0 1px #ccc inset; 
-        }
-
-        /* Opções de Tamanho */
-        .size-options {
-            margin-bottom: 30px;
-        }
-
-        .size-button {
-            padding: 10px 15px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.2s, border-color 0.2s;
-        }
-
-        .size-button:hover {
-            border-color: #000;
-        }
-
-        .size-button.selected {
-            /* O botão selecionado fica amarelo */
-            background-color: #ffc107; 
-            color: #000; 
-            border-color: #ffc107; 
-        }
-
-        /* Botão de Compra: COR AMARELA */
-        .buy-button {
-            width: 100%;
-            padding: 15px;
-            background-color: #ffc107; /* AMARELO */
-            color: #000; /* Cor do texto alterada para preto para contraste */
-            border: none;
-            cursor: pointer;
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-
-        .buy-button:hover {
-            background-color: #e0a800; /* Um tom de amarelo mais escuro no hover */
-        }
-
-        .product-info {
-            margin-top: 30px;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-    </style>
+        .product-info {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <header class="top-bar">
-        <div class="top-item">
-            <span class="icon">🔒</span>
-            <span class="top-text">COMPRA SEGURA</span>
-        </div>
-        <div class="top-item">
-            <span class="icon">🛻</span>
-            <span class="top-text">FRETE GRÁTIS</span>
-        </div>
-        <div class="top-item">
-            <span class="icon">💳</span>
-            <span class="top-text">PARCELE EM ATÉ 12X</span>
-        </div>
-    </header>
+    <header class="top-bar">
+        <div class="top-item">
+            <span class="icon">🔒</span>
+            <span class="top-text">COMPRA SEGURA</span>
+        </div>
+        <div class="top-item">
+            <span class="icon">🛻</span>
+            <span class="top-text">FRETE GRÁTIS</span>
+        </div>
+        <div class="top-item">
+            <span class="icon">💳</span>
+            <span class="top-text">PARCELE EM ATÉ 12X</span>
+        </div>
+    </header>
 
-    <nav class="main-menu">
-        <div class="logo">UNIK <span>STIL</span></div>
-        <ul>
-            <li><a href="index.html">INÍCIO</a></li>
-            <li><a href="qsomos.html">PERGUNTAS FREQUENTES</a></li>
-            <li><a href="minhaconta.html">MINHA CONTA</a></li>
-            <li><a href="dicas.html">DICAS DE CUIDADO</a></li>
-            <li><a href="rastreamento.html">RASTREAMENTO</a></li>
-        </ul>
-        <div class="cart-icon">🛒</div>
-    </nav>
-    
+    <nav class="main-menu">
+        <div class="logo">UNIK <span>STIL</span></div>
+        <ul>
+            <li><a href="index.html">INÍCIO</a></li>
+            <li><a href="qsomos.html">PERGUNTAS FREQUENTES</a></li>
+            <li><a href="minhaconta.html">MINHA CONTA</a></li>
+            <li><a href="dicas.html">DICAS DE CUIDADO</a></li>
+            <li><a href="rastreamento.html">RASTREAMENTO</a></li>
+        </ul>
+        <div class="cart-icon">🛒</div>
+    </nav>
+    
 
-    <div class="container">
-        <div class="product-images">
-            <div class="image-previews" id="image-previews">
-                <div class="preview-item selected" data-color="branco" data-img-url="511ed1eb-6c29-49f3-bbf8-7b5b27cc2ee3.png">
-                    <img src="511ed1eb-6c29-49f3-bbf8-7b5b27cc2ee3.png" alt="Miniatura Branca 1">
-                </div>
-                <div class="preview-item" data-color="branco" data-img-url="88662b5f-d83d-4abc-b0dc-aa113926962d.png">
-                    <img src="88662b5f-d83d-4abc-b0dc-aa113926962d.png" alt="Miniatura Branca 2">
-                </div>
-                <div class="preview-item" data-color="branco" data-img-url="Copilot_20251027_183851.png">
-                    <img src="Copilot_20251027_183851.png" alt="Miniatura Branca 3">
-                </div>
-                <div class="preview-item" data-color="branco" data-img-url="Copilot_20251027_190226.png">
-                    <img src="Copilot_20251027_190226.png" alt="Miniatura Branca 4">
-                </div>
-            </div>
-            <div class="main-image">
-                <img id="main-product-image" src="511ed1eb-6c29-49f3-bbf8-7b5b27cc2ee3.png" alt="Camiseta branca boxy">
-            </div>
-        </div>
+    <div class="container">
+        <div class="product-images">
+                        <div class="image-previews" id="image-previews">
+                <div class="preview-item selected" data-color="preto" data-img-url="511ed1eb-6c29-49f3-bbf8-7b5b27cc2ee3.png">
+                    <img src="511ed1eb-6c29-49f3-bbf8-7b5b27cc2ee3.png" alt="Miniatura Branca 1">
+                </div>
+                <div class="preview-item" data-color="preto" data-img-url="88662b5f-d83d-4abc-b0dc-aa113926962d.png">
+                    <img src="88662b5f-d83d-4abc-b0dc-aa113926962d.png" alt="Miniatura Branca 2">
+                </div>
+                <div class="preview-item" data-color="preto" data-img-url="Copilot_20251027_183851.png">
+                    <img src="Copilot_20251027_183851.png" alt="Miniatura Branca 3">
+                </div>
+                <div class="preview-item" data-color="preto" data-img-url="Copilot_20251027_190226.png">
+                    <img src="Copilot_20251027_190226.png" alt="Miniatura Branca 4">
+                </div>
+            </div>
+            <div class="main-image">
+                <img id="main-product-image" src="511ed1eb-6c29-49f3-bbf8-7b5b27cc2ee3.png" alt="Camiseta branca boxy">
+            </div>
+        </div>
 
-        <div class="product-details">
-            <h1>Camiseta branca boxy </h1>
-            <span class="rating">★ 4.6</span>
+        <div class="product-details">
+            <h1>Camiseta branca boxy </h1>
+            <span class="rating">★ 4.6</span>
 
-            <span class="price-old">De R$ 119,90</span>
-            <span class="price-current">Por R$ 99,90</span>
-            <span class="installment"></span>
+            <span class="price-old">De R$ 119,90</span>
+            <span class="price-current">Por R$ 99,90</span>
+            <span class="installment"></span>
 
-            <div class="color-options">
-                <p>Cor: <span id="selected-color-name">Branco</span></p>
-                <div class="color-circle color-branco selected" data-color="Branco"></div>
-            </div>
+            <div class="color-options">
+                                <p>Cor: <span id="selected-color-name">Preto</span></p>
+                                <div class="color-circle color-preto selected" data-color="Preto"></div>
+            </div>
 
-            <div class="size-options">
-                <p>Tamanho:</p>
-                <button class="size-button" data-size="P">P</button>
-                <button class="size-button" data-size="M">M</button>
-                <button class="size-button" data-size="G">G</button>
-            </div>
+            <div class="size-options">
+                <p>Tamanho:</p>
+                <button class="size-button" data-size="P">P</button>
+                <button class="size-button" data-size="M">M</button>
+                <button class="size-button" data-size="G">G</button>
+            </div>
 
-            <button class="buy-button" onclick="alert('Produto adicionado ao carrinho! Tamanho: ' + getSelectedSize() + ', Cor: ' + document.getElementById('selected-color-name').textContent);">COMPRAR</button>
+            <button class="buy-button" onclick="alert('Produto adicionado ao carrinho! Tamanho: ' + getSelectedSize() + ', Cor: ' + document.getElementById('selected-color-name').textContent);">COMPRAR</button>
 
-            <div class="product-info">
-                <h2>Sobre o produto:</h2>
-                <p> camiseta boxy UnikStil é a peça-chave para quem busca conforto e estilo no dia a dia. Confeccionada em 100% algodão de alta qualidade. Possui modelagem baggy, caimento amplo, prática pro dia a dia.</p>
-                <p>Vendido e Entregue por: UnikStil </p>
-            </div>
-        </div>
-    </div>
+            <div class="product-info">
+                <h2>Sobre o produto:</h2>
+                <p> camiseta boxy UnikStil é a peça-chave para quem busca conforto e estilo no dia a dia. Confeccionada em 100% algodão de alta qualidade. Possui modelagem baggy, caimento amplo, prática pro dia a dia.</p>
+                <p>Vendido e Entregue por: UnikStil </p>
+            </div>
+        </div>
+    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainImage = document.getElementById('main-product-image');
-            const colorCircles = document.querySelectorAll('.color-circle');
-            const sizeButtons = document.querySelectorAll('.size-button');
-            const previewItems = document.querySelectorAll('.preview-item');
-            const selectedColorName = document.getElementById('selected-color-name');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainImage = document.getElementById('main-product-image');
+            const colorCircles = document.querySelectorAll('.color-circle');
+            const sizeButtons = document.querySelectorAll('.size-button');
+            const previewItems = document.querySelectorAll('.preview-item');
+            const selectedColorName = document.getElementById('selected-color-name');
 
-            // --- Função de Seleção de Cor/Imagem ---
-            colorCircles.forEach(circle => {
-                circle.addEventListener('click', () => {
-                    // 1. Mudar o destaque da cor
-                    colorCircles.forEach(c => c.classList.remove('selected'));
-                    circle.classList.add('selected');
+            // --- Função de Seleção de Cor/Imagem ---
+            colorCircles.forEach(circle => {
+                circle.addEventListener('click', () => {
+                    // 1. Mudar o destaque da cor
+                    colorCircles.forEach(c => c.classList.remove('selected'));
+                    circle.classList.add('selected');
 
-                    // 2. Atualizar o nome da cor
-                    const newColor = circle.getAttribute('data-color');
-                    selectedColorName.textContent = newColor;
+                    // 2. Atualizar o nome da cor
+                    const newColor = circle.getAttribute('data-color');
+                    selectedColorName.textContent = newColor;
 
-                    // 3. Atualizar a imagem principal com a primeira miniatura da cor selecionada
-                    const firstImageForColor = Array.from(previewItems).find(item => item.getAttribute('data-color').toLowerCase() === newColor.toLowerCase());
+                    // 3. Atualizar a imagem principal com a primeira miniatura da cor selecionada
+                    // NOTA: A busca abaixo usará as miniaturas brancas, pois elas foram editadas para ter data-color="preto"
+                    const firstImageForColor = Array.from(previewItems).find(item => item.getAttribute('data-color').toLowerCase() === newColor.toLowerCase());
 
-                    if (firstImageForColor) {
-                        mainImage.src = firstImageForColor.getAttribute('data-img-url');
-                        
-                        // 4. Mudar o destaque da miniatura
-                        previewItems.forEach(p => p.classList.remove('selected'));
-                        firstImageForColor.classList.add('selected');
-                    }
-                });
-            });
+                    if (firstImageForColor) {
+                        mainImage.src = firstImageForColor.getAttribute('data-img-url');
+                        
+                        // 4. Mudar o destaque da miniatura
+                        previewItems.forEach(p => p.classList.remove('selected'));
+                        firstImageForColor.classList.add('selected');
+                    }
+                });
+            });
 
-            // --- Função de Mudança de Miniatura ---
-            previewItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    // 1. Mudar o destaque da miniatura
-                    previewItems.forEach(p => p.classList.remove('selected'));
-                    item.classList.add('selected');
+            // --- Função de Mudança de Miniatura ---
+            previewItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // 1. Mudar o destaque da miniatura
+                    previewItems.forEach(p => p.classList.remove('selected'));
+                    item.classList.add('selected');
 
-                    // 2. Mudar a imagem principal
-                    mainImage.src = item.getAttribute('data-img-url');
-                });
-            });
+                    // 2. Mudar a imagem principal
+                    mainImage.src = item.getAttribute('data-img-url');
+                });
+            });
 
 
-            // --- Função de Seleção de Tamanho ---
-            sizeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    sizeButtons.forEach(b => b.classList.remove('selected'));
-                    button.classList.add('selected');
-                });
-            });
+            // --- Função de Seleção de Tamanho ---
+            sizeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    sizeButtons.forEach(b => b.classList.remove('selected'));
+                    button.classList.add('selected');
+                });
+            });
 
-            // Adiciona uma função para pegar o tamanho selecionado no clique do botão COMPRAR
-            window.getSelectedSize = function() {
-                const selectedSize = document.querySelector('.size-button.selected');
-                return selectedSize ? selectedSize.getAttribute('data-size') : 'Nenhum selecionado';
-            }
-        });
-    </script>
+            // Adiciona uma função para pegar o tamanho selecionado no clique do botão COMPRAR
+            window.getSelectedSize = function() {
+                const selectedSize = document.querySelector('.size-button.selected');
+                return selectedSize ? selectedSize.getAttribute('data-size') : 'Nenhum selecionado';
+            }
+        });
+    </script>
 </body>
 </html>
-.
