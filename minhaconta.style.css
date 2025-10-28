@@ -107,7 +107,222 @@ body {
 }
 
 
+/* Container Principal */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
 
+.section {
+    background: var(--brancao);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+}
+
+/* Área de Autenticação */
+#authArea {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+#pageTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--mephiles);
+    margin: 0;
+}
+
+.tabs {
+    display: flex;
+    background: #f7fafc;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.tab {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--carlos);
+    font-family: var(--font-inter);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background: #fff;
+    color: var(--mephiles);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--baranco);
+    border-radius: 8px;
+    font-family: var(--font-inter);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.form input:focus {
+    outline: none;
+    border-color: var(--sonic);
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.form input::placeholder {
+    color: var(--carlito);
+}
+
+.btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-inter);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:not(.ghost) {
+    background: var(--botao);
+    color: white;
+    box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3);
+}
+
+.btn:hover:not(.ghost) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
+}
+
+.btn.ghost {
+    background: transparent;
+    border: 2px solid var(--baranco);
+    color: var(--carlos);
+}
+
+.btn.ghost:hover {
+    background: var(--baranco);
+    color: var(--mephiles);
+}
+
+/* Área Privada */
+.private {
+    margin-top: 2rem;
+}
+
+#privateArea h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--mephiles);
+    margin: 0;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+}
+
+.users-table th {
+    background: #f7fafc;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--mephiles);
+    border-bottom: 2px solid var(--baranco);
+}
+
+.users-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--baranco);
+    color: var(--pretuncio);
+}
+
+.users-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Formulário de Edição */
+#editFormContainer {
+    background: var(--brancao);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+#editFormContainer h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--mephiles);
+    margin-bottom: 1.5rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.field label {
+    font-weight: 500;
+    color: var(--pretuncio);
+    font-size: 0.9rem;
+}
+
+/* Mensagens */
+.msg {
+    min-height: 24px;
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+.msg.error {
+    color: var(--pare);
+}
+
+.msg.success {
+    color: var(--verde);
+}
+
+/* RESPONSIVO */
+@media (max-width: 900px){
+  .cards{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 680px){
+  .grid-2{ grid-template-columns:1fr; }
+  .cards{ grid-template-columns:1fr; }
+  .menu{ display:none; }
+  .menu.open{ display:flex; flex-direction:column; position:absolute; right:4%; top:60px; background:rgba(15,23,42,.95); padding:14px; border-radius:16px; }
+  .hamburger{ display:block; }
+}
+/* cabo antonio */
 
 
 
