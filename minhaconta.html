@@ -1,114 +1,61 @@
 <!doctype html>
-<html lang="pt-br"><head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="minhaconta.style.css">
-  <link rel="icon" type="image/png" href="imgs/iconeapp.png">
-  <!-- fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;display=swap" rel="stylesheet">
-</head>
-<body>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Unik Stil</title>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="minhaconta.style.css">
+    </head>
+    <body>
+        <header class="top-bar">
+            <div class="top-item">
+                <span class="icon">🔒</span>
+                <span class="top-text">COMPRA SEGURA</span>
+            </div>
+            <div class="top-item">
+                <span class="icon">🛻</span>
+                <span class="top-text">FRETE GRÁTIS</span>
+            </div>
+            <div class="top-item">
+                <span class="icon">💳</span>
+                <span class="top-text">PARCELE EM ATÉ 12X</span>
+            </div>
+        </header>
+        <nav class="main-menu">
+            <div class="logo">
+                UNIK <span>STIL</span>
+            </div>
+            <ul>
+                <li>
+                    <a href="index.html">INÍCIO</a>
+                </li>
+                <li>
+                    <a href="qsomos.html">PERGUNTAS FREQUENTES</a>
+                </li>
+                <li>
+                    <a href="minhaconta.html">MINHA CONTA</a>
+                </li>
+                <li>
+                    <a href="dicas.html">DICAS DE CUIDADO</a>
+                </li>
+                <li>
+                    <a href="rastreamento.html">RASTREAMENTO</a>
+                </li>
+            </ul>
+            <div class="cart-icon">🛒</div>
+        </nav>
 
 
-                <!-- Botão Hambúrguer (visível apenas no mobile) -->
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-    
-        </div>
-    </nav>
-<script>
-  // Selecionar elementos
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
 
-// Adicionar evento de clique no hambúrguer
-hamburger.addEventListener('click', () => {
-    // Toggle classes active
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
 
-// Fechar menu ao clicar em um link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-});
 
-// Fechar menu ao redimensionar a janela (se voltar para desktop)
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    }
-});
-</script>
 
-  <section class="container section">
-    <!-- Área de autenticação -->
-    <div id="authArea">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h2 id="pageTitle">Acessar conta</h2>
-        <button id="logoutBtn" class="btn hidden">Sair</button>
-      </div>
-      <div id="authMsg" class="msg hidden"></div>
-      <div class="tabs" style="margin-bottom:12px;">
-        <button id="tabLogin" class="tab active">Login</button>
-        <button id="tabRegister" class="tab">Cadastro</button>
-      </div>
-
-      <form id="loginForm" class="form">
-        <input type="email" id="loginEmail" placeholder="E-mail" required="">
-        <input type="password" id="loginPassword" placeholder="Senha" required="">
-        <div style="display:flex; gap:8px; align-items:center;">
-          <button type="submit" class="btn" id="loginSubmit">Entrar</button>
-          <!-- ADICIONADO: botão "Esqueceu a senha?" -->
-          <button type="button" id="forgotBtn" class="btn ghost" style="padding:6px 10px; font-size:0.9rem;">Esqueceu a senha?</button>
-        </div>
-      </form>
-
-    <form id="registerForm" class="form hidden" style="margin-top:10px;">
-  <input type="text" id="registerName" placeholder="Nome completo" required>
-  <input type="date" id="registerDob" placeholder="Nascimento">
-  <input type="email" id="registerEmail" placeholder="E-mail" required>
-  <input type="text" id="registerPhone" placeholder="Telefone">
-  <input type="text" id="registerUsername" placeholder="Usuário (apenas letras/números)" required>
-  <input type="password" id="registerPassword" placeholder="Senha (mín. 6)" required>
-  <button type="submit" class="btn">Cadastrar</button>
-</form>
-
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>UNIK STILL</p>
+        <p>Feito pelos alunos Fabiano, Thiago e Matheus - Todos os direitos reservados - 2025</p>
     </div>
-
-      <!-- ADICIONADO: área de boas-vindas simples que aparece após login -->
-      <div id="welcomeArea" class="hidden" style="margin-top:20px; text-align:center;">
-        <h2 id="welcomeTitle">Bem-vindo(a)</h2>
-        <p id="welcomeName" style="font-weight:600; font-size:1.1rem; margin-bottom:12px;"></p>
-        <button id="welcomeLogout" class="btn">Sair</button>
-        <button id="backToAuth" class="btn ghost" style="margin-left:10px; margin-top:10px;">Voltar</button>
-      </div>
-
-      <div id="editFormContainer" class="hidden" style="margin-top:20px;">
-        <h3>Editar Cadastro</h3>
-        <form id="editForm" class="form">
-          <input type="hidden" id="editId">
-          <div class="field"><label>Nome completo</label><input id="editNome" required=""></div>
-          <div class="field"><label>Nascimento</label><input id="editNascimento" type="date"></div>
-          <div class="field"><label>Email (login)</label><input id="editEmail" type="email" required=""></div>
-          <div class="field"><label>Telefone</label><input id="editTelefone"></div>
-          <div class="field"><label>Usuário</label><input id="editUsuario" required=""></div>
-          <button type="submit" class="btn">Salvar</button>
-          <button type="button" id="cancelEdit" class="btn ghost">Cancelar</button>
-        </form>
-      </div>
-
-      <div id="msg" class="msg"></div>
-    </div>
-  </section>
-
-  <script type="module" src="cadlog.js"></script>
-</body>
-</html>
+</footer>
+<script src="script.js"></script>
+</body></html>>
