@@ -239,5 +239,62 @@ body {
         font-size: 28px;
     }
 
-    
+    /* Container principal do carrossel */
+.carousel-container {
+    max-width: 100%; /* Ajuste conforme a largura desejada */
+    position: relative; /* Essencial para posicionar os botões */
+    margin: auto;
+    overflow: hidden; /* Garante que só um slide seja visível por vez */
+}
+
+/* Os slides do carrossel (que contêm as imagens) */
+.carousel-slide {
+    display: none; /* INICIALMENTE OCULTA TODOS. O JS mostra o primeiro. */
+}
+
+/* Estilo para as imagens dentro dos slides */
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+/* Estilo dos botões "Anterior" e "Próximo" */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white; /* Cor dos ícones */
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.4); /* Fundo semi-transparente */
+}
+
+/* Posição do botão "Próximo" à direita */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* Efeito hover nos botões */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Opcional: Adicionar a transição de fade (efeito mais suave) */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
    

@@ -34,27 +34,41 @@
         </ul>
         <div class="cart-icon">🛒</div>
     </nav>
-    <main>
-        <div class="carousel-container">
-            <div class="carousel-slide fade">
-                <img src="capa pdrt1.png" alt="Slide 1">
-            </div>
-            <div class="carousel-slide fade">
-                <img src="bermuda.jpeg" alt="Slide 2">
-            </div>
-            <div class="carousel-slide fade">
-                <img src="camisa cinza.jpeg" alt="Slide 3">
-            </div>
-            <div class="carousel-slide fade">
-                <img src="https://via.placeholder.com/1500x500/FFFF00/000000?text=Slide+4" alt="Slide 4">
-            </div>
-            <div class="carousel-slide fade">
-                <img src="https://via.placeholder.com/1500x500/800080/FFFFFF?text=Slide+5" alt="Slide 5">
-            </div>
-            <a class="prev" onclick="plusSlides(-1)">❮</a>
-            <a class="next" onclick="plusSlides(1)">❯</a>
-        </div>
+    </main>
 
+    <script>
+        let slideIndex = 1; // Começa na primeira imagem
+        showSlides(slideIndex); // Chama a função para mostrar a primeira imagem
+
+        // Função para avançar ou retroceder os slides
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Função principal para mostrar os slides
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("carousel-slide");
+            
+            // Se o índice for maior que o número de slides, volta para o primeiro
+            if (n > slides.length) {
+                slideIndex = 1;
+            }    
+            
+            // Se o índice for menor que 1, vai para o último
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            
+            // Oculta todos os slides
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            
+            // Mostra o slide atual
+            slides[slideIndex - 1].style.display = "block";  
+        }
+    </script>
         <section class="product-section">
             <h2 class="section-title">DESTAQUES</h2>
             <div class="product-grid">
