@@ -13,7 +13,7 @@ const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 const authMsg = document.getElementById("authMsg");
 const authArea = document.getElementById("authArea");
-const privateArea = document.getElementById("privateArea");
+const privateArea = document.getElementById("privateArea"); // Agora existe no HTML!
 const usersTableBody = document.querySelector("#usersTable tbody");
 const editFormContainer = document.getElementById("editFormContainer");
 const editForm = document.getElementById("editForm");
@@ -31,332 +31,333 @@ const backToAuth = document.getElementById("backToAuth");
 
 // --- Utility functions ---
 function showAuthMsg(text = "", type = "") {
-  if (!authMsg) return;
-  authMsg.textContent = text;
-  authMsg.className = type ? `msg ${type}` : "msg";
+  if (!authMsg) return;
+  authMsg.textContent = text;
+  authMsg.className = type ? `msg ${type}` : "msg";
 }
 
 function showMsg(text = "", type = "") {
-  if (!msgBox) return;
-  msgBox.textContent = text;
-  msgBox.className = type ? `msg ${type}` : "msg";
+  if (!msgBox) return;
+  msgBox.textContent = text;
+  msgBox.className = type ? `msg ${type}` : "msg";
 }
 
 // --- Tab switching ---
 function toggleTab(tab) {
-  if (tab === "login") {
-    tabLogin.classList.add("active");
-    tabRegister.classList.remove("active");
-    loginForm.classList.remove("hidden");
-    registerForm.classList.add("hidden");
-  } else {
-    tabRegister.classList.add("active");
-    tabLogin.classList.remove("active");
-    registerForm.classList.remove("hidden");
-    loginForm.classList.add("hidden");
-  }
-  showAuthMsg("");
+  if (tab === "login") {
+    tabLogin.classList.add("active");
+    tabRegister.classList.remove("active");
+    loginForm.classList.remove("hidden");
+    registerForm.classList.add("hidden");
+  } else {
+    tabRegister.classList.add("active");
+    tabLogin.classList.remove("active");
+    registerForm.classList.remove("hidden");
+    loginForm.classList.add("hidden");
+  }
+  showAuthMsg("");
 }
 
+// ESTES EVENT LISTENERS DEVEM AGORA FUNCIONAR!
 tabLogin.addEventListener("click", () => toggleTab("login"));
 tabRegister.addEventListener("click", () => toggleTab("register"));
 
 // --- REGISTER ---
 registerForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  showAuthMsg("Cadastrando...", "");
+  e.preventDefault();
+  showAuthMsg("Cadastrando...", "");
 
-  const name = document.getElementById("registerName").value.trim();
-  const dob = document.getElementById("registerDob").value || null;
-  const phone = document.getElementById("registerPhone").value.trim();
-  const username = document.getElementById("registerUsername").value.trim().toLowerCase();
-  const email = document.getElementById("registerEmail").value.trim().toLowerCase();
-  const password = document.getElementById("registerPassword").value;
+  const name = document.getElementById("registerName").value.trim();
+  const dob = document.getElementById("registerDob").value || null;
+  const phone = document.getElementById("registerPhone").value.trim();
+  const username = document.getElementById("registerUsername").value.trim().toLowerCase();
+  const email = document.getElementById("registerEmail").value.trim().toLowerCase();
+  const password = document.getElementById("registerPassword").value;
 
-  try {
-    const { data: userData, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { data: { full_name: name, dob, phone, username } },
-    });
-    if (error) throw error;
+  try {
+    const { data: userData, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: name, dob, phone, username } },
+    });
+    if (error) throw error;
 
-    showAuthMsg("Cadastro realizado! Verifique seu e-mail.", "success");
-    registerForm.reset();
-    toggleTab("login");
-  } catch (err) {
-    console.error(err);
-    showAuthMsg(err?.message || "Erro ao cadastrar", "error");
-  }
+    showAuthMsg("Cadastro realizado! Verifique seu e-mail.", "success");
+    registerForm.reset();
+    toggleTab("login");
+  } catch (err) {
+    console.error(err);
+    showAuthMsg(err?.message || "Erro ao cadastrar", "error");
+  }
 });
 
 
 // --- LOGIN ---
 // alteração mínima: ao logar com sucesso mostramos a área de welcome (com nome do perfil)
 loginForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  showAuthMsg("Entrando...", "");
+  e.preventDefault();
+  showAuthMsg("Entrando...", "");
 
-  const email = document.getElementById("loginEmail").value.trim().toLowerCase();
-  const password = document.getElementById("loginPassword").value;
+  const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+  const password = document.getElementById("loginPassword").value;
 
-  try {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) throw error;
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
 
-    showAuthMsg("Login realizado!", "success");
-    loginForm.reset();
+    showAuthMsg("Login realizado!", "success");
+    loginForm.reset();
 
-    // Obter usuário atual e buscar nome no profile (se existir)
-    const { data: userData } = await supabase.auth.getUser();
-    const user = userData?.user;
-    let displayName = '';
+    // Obter usuário atual e buscar nome no profile (se existir)
+    const { data: userData } = await supabase.auth.getUser();
+    const user = userData?.user;
+    let displayName = '';
 
-    if (user) {
-      // tenta pegar do metadata do usuário
-      displayName = user.user_metadata?.full_name || user.user_metadata?.nome || user.user_metadata?.username || user.email || '';
+    if (user) {
+      // tenta pegar do metadata do usuário
+      displayName = user.user_metadata?.full_name || user.user_metadata?.nome || user.user_metadata?.username || user.email || '';
 
-      // se existir profile na tabela, prefere o full_name da tabela profiles
-      try {
-        const { data: profileRow, error: profileErr } = await supabase
-          .from("profiles")
-          .select("full_name")
-          .eq("id", user.id)
-          .single();
+      // se existir profile na tabela, prefere o full_name da tabela profiles
+      try {
+        const { data: profileRow, error: profileErr } = await supabase
+          .from("profiles")
+          .select("full_name")
+          .eq("id", user.id)
+          .single();
 
-        if (!profileErr && profileRow?.full_name) {
-          displayName = profileRow.full_name;
-        }
-      } catch (profileQueryErr) {
-        // se falhar, só ignoramos e usamos o nome do metadata
-        console.warn("Erro ao buscar profile:", profileQueryErr);
-      }
-    }
+        if (!profileErr && profileRow?.full_name) {
+          displayName = profileRow.full_name;
+        }
+      } catch (profileQueryErr) {
+        // se falhar, só ignoramos e usamos o nome do metadata
+        console.warn("Erro ao buscar profile:", profileQueryErr);
+      }
+    }
 
-    // Exibir a área de boas-vindas (substitui a área de autenticação)
-    showWelcomeArea(displayName || 'Usuário');
+    // Exibir a área de boas-vindas (substitui a área de autenticação)
+    showWelcomeArea(displayName || 'Usuário');
 
-  } catch (err) {
-    console.error(err);
-    showAuthMsg(err?.message || "Erro no login", "error");
-  }
+  } catch (err) {
+    console.error(err);
+    showAuthMsg(err?.message || "Erro no login", "error");
+  }
 });
 
 // --- LOGOUT ---
 async function doLogout() {
-  await supabase.auth.signOut();
-  showAuthMsg("Você saiu.", "success");
-  // volta para a tela de auth
-  hideWelcomeArea();
+  await supabase.auth.signOut();
+  showAuthMsg("Você saiu.", "success");
+  // volta para a tela de auth
+  hideWelcomeArea();
 }
 logoutBtn.addEventListener("click", doLogout);
 if (logoutBtn2) logoutBtn2.addEventListener("click", doLogout);
 
 // botão de logout da área de boas-vindas
 if (welcomeLogout) {
-  welcomeLogout.addEventListener("click", async () => {
-    await supabase.auth.signOut();
-    hideWelcomeArea();
-  });
+  welcomeLogout.addEventListener("click", async () => {
+    await supabase.auth.signOut();
+    hideWelcomeArea();
+  });
 }
 
 // botão "Voltar" (mostra a área de login novamente, sem deslogar)
 // (mantive para caso você queira voltar sem sair)
 if (backToAuth) {
-  backToAuth.addEventListener("click", () => {
-    hideWelcomeArea();
-  });
+  backToAuth.addEventListener("click", () => {
+    hideWelcomeArea();
+  });
 }
 
 // --- ESQUECEU A SENHA ---
 if (forgotBtn) {
-  forgotBtn.addEventListener("click", async () => {
-    const email = document.getElementById("loginEmail").value.trim().toLowerCase();
-    if (!email) {
-      showMsg("Digite seu e-mail no campo acima para recuperar a senha.", "error");
-      return;
-    }
+  forgotBtn.addEventListener("click", async () => {
+    const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+    if (!email) {
+      showMsg("Digite seu e-mail no campo acima para recuperar a senha.", "error");
+      return;
+    }
 
-    try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin + '/reset.html' // se quiser, altere a URL
-      });
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin + '/reset.html' // se quiser, altere a URL
+      });
 
-      if (error) {
-        console.error("Erro resetPasswordForEmail:", error);
-        showMsg("Erro ao enviar o e-mail de recuperação.", "error");
-      } else {
-        showMsg("E-mail de recuperação enviado! Verifique sua caixa de entrada.", "success");
-      }
-    } catch (err) {
-      console.error(err);
-      showMsg("Erro ao enviar o e-mail de recuperação.", "error");
-    }
-  });
+      if (error) {
+        console.error("Erro resetPasswordForEmail:", error);
+        showMsg("Erro ao enviar o e-mail de recuperação.", "error");
+      } else {
+        showMsg("E-mail de recuperação enviado! Verifique sua caixa de entrada.", "success");
+      }
+    } catch (err) {
+      console.error(err);
+      showMsg("Erro ao enviar o e-mail de recuperação.", "error");
+    }
+  });
 }
 
 // --- PROFILE / TABLE ---
 async function loadMyProfileAndRender(userId, email) {
-  try {
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("id, full_name, dob, phone, username")
-      .eq("id", userId)
-      .single();
+  try {
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("id, full_name, dob, phone, username")
+      .eq("id", userId)
+      .single();
 
-    if (error && error.code !== "PGRST116") throw error;
+    if (error && error.code !== "PGRST116") throw error;
 
-    usersTableBody && (usersTableBody.innerHTML = "");
+    usersTableBody && (usersTableBody.innerHTML = "");
 
-    const row = data || { id: userId, full_name: "(sem perfil)", dob: "", phone: "", username: "" };
+    const row = data || { id: userId, full_name: "(sem perfil)", dob: "", phone: "", username: "" };
 
-    if (usersTableBody) {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${row.full_name || ""}</td>
-        <td>${row.dob || ""}</td>
-        <td>${email || ""}</td>
-        <td>${row.phone || ""}</td>
-        <td>${row.username || ""}</td>
-        <td>
-          <button class="btn edit-btn" data-id="${row.id}">Editar</button>
-        </td>
-      `;
-      usersTableBody.appendChild(tr);
+    if (usersTableBody) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${row.full_name || ""}</td>
+        <td>${row.dob || ""}</td>
+        <td>${email || ""}</td>
+        <td>${row.phone || ""}</td>
+        <td>${row.username || ""}</td>
+        <td>
+          <button class="btn edit-btn" data-id="${row.id}">Editar</button>
+        </td>
+      `;
+      usersTableBody.appendChild(tr);
 
-      const editBtn = tr.querySelector(".edit-btn");
-      editBtn.addEventListener("click", () => openEditForm(row, email));
-    }
-  } catch (err) {
-    console.error("Erro ao carregar perfil:", err);
-    showMsg("Não foi possível carregar seu perfil.", "error");
-  }
+      const editBtn = tr.querySelector(".edit-btn");
+      editBtn.addEventListener("click", () => openEditForm(row, email));
+    }
+  } catch (err) {
+    console.error("Erro ao carregar perfil:", err);
+    showMsg("Não foi possível carregar seu perfil.", "error");
+  }
 }
 
 // --- EDIT FORM ---
 function openEditForm(profile, email) {
-  editFormContainer.classList.remove("hidden");
-  document.getElementById("editId").value = profile.id || "";
-  document.getElementById("editNome").value = profile.full_name || "";
-  document.getElementById("editNascimento").value = profile.dob || "";
-  document.getElementById("editEmail").value = email || "";
-  document.getElementById("editTelefone").value = profile.phone || "";
-  document.getElementById("editUsuario").value = profile.username || "";
+  editFormContainer.classList.remove("hidden");
+  document.getElementById("editId").value = profile.id || "";
+  document.getElementById("editNome").value = profile.full_name || "";
+  document.getElementById("editNascimento").value = profile.dob || "";
+  document.getElementById("editEmail").value = email || "";
+  document.getElementById("editTelefone").value = profile.phone || "";
+  document.getElementById("editUsuario").value = profile.username || "";
 }
 
 cancelEdit.addEventListener("click", (e) => {
-  e.preventDefault();
-  editFormContainer.classList.add("hidden");
+  e.preventDefault();
+  editFormContainer.classList.add("hidden");
 });
 
 editForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  showMsg("Salvando...", "");
+  e.preventDefault();
+  showMsg("Salvando...", "");
 
-  const id = document.getElementById("editId").value;
-  const full_name = document.getElementById("editNome").value.trim();
-  const dob = document.getElementById("editNascimento").value || null;
-  const email = document.getElementById("editEmail").value.trim().toLowerCase();
-  const phone = document.getElementById("editTelefone").value.trim();
-  const username = document.getElementById("editUsuario").value.trim().toLowerCase();
+  const id = document.getElementById("editId").value;
+  const full_name = document.getElementById("editNome").value.trim();
+  const dob = document.getElementById("editNascimento").value || null;
+  const email = document.getElementById("editEmail").value.trim().toLowerCase();
+  const phone = document.getElementById("editTelefone").value.trim();
+  const username = document.getElementById("editUsuario").value.trim().toLowerCase();
 
-  try {
-    const { error: updateErr } = await supabase
-      .from("profiles")
-      .update({ full_name, dob, phone, username })
-      .eq("id", id);
-    if (updateErr) throw updateErr;
+  try {
+    const { error: updateErr } = await supabase
+      .from("profiles")
+      .update({ full_name, dob, phone, username })
+      .eq("id", id);
+    if (updateErr) throw updateErr;
 
-    try {
-      const { error: authErr } = await supabase.auth.updateUser({ email });
-      if (authErr) console.warn("Não foi possível atualizar email:", authErr.message);
-    } catch (e) {
-      console.warn("updateUser falhou:", e);
-    }
+    try {
+      const { error: authErr } = await supabase.auth.updateUser({ email });
+      if (authErr) console.warn("Não foi possível atualizar email:", authErr.message);
+    } catch (e) {
+      console.warn("updateUser falhou:", e);
+    }
 
-    showMsg("Perfil atualizado com sucesso!", "success");
-    editFormContainer.classList.add("hidden");
+    showMsg("Perfil atualizado com sucesso!", "success");
+    editFormContainer.classList.add("hidden");
 
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user) await loadMyProfileAndRender(session.user.id, session.user.email);
-  } catch (err) {
-    console.error(err);
-    showMsg(err?.message || "Erro ao salvar perfil", "error");
-  }
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.user) await loadMyProfileAndRender(session.user.id, session.user.email);
+  } catch (err) {
+    console.error(err);
+    showMsg(err?.message || "Erro ao salvar perfil", "error");
+  }
 });
 
 // --- AUTH STATE CHANGE ---
 supabase.auth.onAuthStateChange(async (event, session) => {
-  if (session?.user) {
-    // se houver sessão, exibe a área privada (se existir) e tenta carregar perfil
-    authArea.classList.add("hidden");
-    privateArea && privateArea.classList.remove("hidden");
-    logoutBtn.classList.remove("hidden");
-    logoutBtn2 && logoutBtn2.classList.remove("hidden");
-    await loadMyProfileAndRender(session.user.id, session.user.email);
+  if (session?.user) {
+    // se houver sessão, exibe a área privada (se existir) e tenta carregar perfil
+    authArea.classList.add("hidden");
+    privateArea && privateArea.classList.remove("hidden");
+    logoutBtn.classList.remove("hidden");
+    logoutBtn2 && logoutBtn2.classList.remove("hidden");
+    await loadMyProfileAndRender(session.user.id, session.user.email);
 
-    // também mostrar welcome area automaticamente
-    const nameFromMeta = session.user.user_metadata?.full_name || session.user.user_metadata?.nome || session.user.user_metadata?.username || session.user.email || 'Usuário';
-    showWelcomeArea(nameFromMeta);
-  } else {
-    // sem sessão: volta para tela de login
-    authArea.classList.remove("hidden");
-    privateArea && privateArea.classList.add("hidden");
-    logoutBtn.classList.add("hidden");
-    logoutBtn2 && logoutBtn2.classList.add("hidden");
-    usersTableBody && (usersTableBody.innerHTML = "");
-    editFormContainer.classList.add("hidden");
-    hideWelcomeArea();
-  }
+    // também mostrar welcome area automaticamente
+    const nameFromMeta = session.user.user_metadata?.full_name || session.user.user_metadata?.nome || session.user.user_metadata?.username || session.user.email || 'Usuário';
+    showWelcomeArea(nameFromMeta);
+  } else {
+    // sem sessão: volta para tela de login
+    authArea.classList.remove("hidden");
+    privateArea && privateArea.classList.add("hidden");
+    logoutBtn.classList.add("hidden");
+    logoutBtn2 && logoutBtn2.classList.add("hidden");
+    usersTableBody && (usersTableBody.innerHTML = "");
+    editFormContainer.classList.add("hidden");
+    hideWelcomeArea();
+  }
 });
 
 // --- CHECK SESSION ON LOAD ---
 (async () => {
-  try {
-    const { data } = await supabase.auth.getSession();
-    const session = data?.session;
+  try {
+    const { data } = await supabase.auth.getSession();
+    const session = data?.session;
 
-    if (session?.user) {
-      authArea.classList.add("hidden");
-      privateArea && privateArea.classList.remove("hidden");
-      await loadMyProfileAndRender(session.user.id, session.user.email);
+    if (session?.user) {
+      authArea.classList.add("hidden");
+      privateArea && privateArea.classList.remove("hidden");
+      await loadMyProfileAndRender(session.user.id, session.user.email);
 
-      // mostrar welcome se tiver user
-      const nameFromMeta = session.user.user_metadata?.full_name || session.user.user_metadata?.nome || session.user.user_metadata?.username || session.user.email || 'Usuário';
-      showWelcomeArea(nameFromMeta);
-    } else {
-      authArea.classList.remove("hidden");
-      privateArea && privateArea.classList.add("hidden");
-    }
-  } catch (err) {
-    console.error("Erro ao checar sessão:", err);
-  }
+      // mostrar welcome se tiver user
+      const nameFromMeta = session.user.user_metadata?.full_name || session.user.user_metadata?.nome || session.user.user_metadata?.username || session.user.email || 'Usuário';
+      showWelcomeArea(nameFromMeta);
+    } else {
+      authArea.classList.remove("hidden");
+      privateArea && privateArea.classList.add("hidden");
+    }
+  } catch (err) {
+    console.error("Erro ao checar sessão:", err);
+  }
 })();
 
 // =========================
 // Funções para mostrar/ocultar área de boas-vindas
 // =========================
 function showWelcomeArea(name) {
-  // esconder a área de autenticação principal
-  const authAreaEl = document.getElementById('authArea');
-  if (authAreaEl) authAreaEl.classList.add('hidden');
+  // esconder a área de autenticação principal
+  const authAreaEl = document.getElementById('authArea');
+  if (authAreaEl) authAreaEl.classList.add('hidden');
 
-  if (welcomeArea) {
-    welcomeName.textContent = name || 'Usuário';
-    welcomeArea.classList.remove('hidden');
-    // opcional: atualizar o título da página
-    const pageTitle = document.getElementById('pageTitle');
-    if (pageTitle) pageTitle.textContent = `Bem-vindo(a), ${name || 'Usuário'}`;
-  }
+  if (welcomeArea) {
+    welcomeName.textContent = name || 'Usuário';
+    welcomeArea.classList.remove('hidden');
+    // opcional: atualizar o título da página
+    const pageTitle = document.getElementById('pageTitle');
+    if (pageTitle) pageTitle.textContent = `Bem-vindo(a), ${name || 'Usuário'}`;
+  }
 }
 
 function hideWelcomeArea() {
-  const authAreaEl = document.getElementById('authArea');
-  if (authAreaEl) authAreaEl.classList.remove('hidden');
+  const authAreaEl = document.getElementById('authArea');
+  if (authAreaEl) authAreaEl.classList.remove('hidden');
 
-  if (welcomeArea) {
-    welcomeArea.classList.add('hidden');
-    const pageTitle = document.getElementById('pageTitle');
-    if (pageTitle) pageTitle.textContent = 'Acessar conta';
-  }
-}
+  if (welcomeArea) {
+    welcomeArea.classList.add('hidden');
+    const pageTitle = document.getElementById('pageTitle');
+    if (pageTitle) pageTitle.textContent = 'Acessar conta';
+  }
+}DDDD
