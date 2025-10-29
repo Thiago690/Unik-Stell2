@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Entrega UnikStil</title>
+    <style>
+        /* Estilos CSS do Checkout (Segunda Imagem) */
+        :root {
+            --primary-color: #000; /* Preto para textos */
+            --secondary-color: #6c757d; /* Cinza para textos secundários */
+            --highlight-color: #FFD700; /* Amarelo-Ouro para destaque e erros */
+            --border-color: #ced4da;
+            --background-color: #fff;
+            --button-bg: #343a40; /* Cinza escuro para botão */
+            --button-text: #fff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header e Logo */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            /* Substituí 'romã' por 'UNIK STIL' */
+            font-family: 'Oswald', sans-serif; 
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+        .logo span {
+            color: var(--highlight-color);
+        }
+
+        /* Progress Bar (Carrinho > Entrega > Pagamento) */
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            border: 1px solid var(--border-color);
+        }
+
+        .step-text {
+            font-size: 12px;
+            color: var(--secondary-color);
+        }
+
+        /* Estado ativo/concluído */
+        .step.active .step-icon {
+            background-color: var(--highlight-color); /* Amarelo */
+            color: var(--primary-color);
+            border-color: var(--highlight-color);
+        }
+
+        /* O passo 'Carrinho' está concluído */
+        .step:first-child .step-icon {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        /* Layout principal: Formulário (Esquerda) e Resumo (Direita) */
+        .content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .form-section {
+            flex: 2;
+        }
+
+        .summary-section {
+            flex: 1;
+            padding: 20px;
+            border-left: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        /* Formulário de Contato e Entrega */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        /* Estilos de erro (Amarelo) */
+        .error-input {
+            border-color: var(--highlight-color) !important;
+        }
+
+        .error-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--highlight-color); /* Amarelo */
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: var(--highlight-color); /* Amarelo */
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        /* Visibilidade dos erros - por padrão, estão visíveis para simular a imagem */
+        #email-error, #cep-error, #email-x { display: block; }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .checkbox-group input {
+            margin-right: 8px;
+        }
+
+        .cep-info {
+            float: right;
+            font-size: 12px;
+            color: var(--secondary-color);
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        /* Botão Continuar */
+        .continue-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Resumo do Pedido (Direita) */
+        .product-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .product-image {
+            width: 50px;
+            height: 50px;
+            background-color: #f8f9fa; 
+            border: 1px solid var(--border-color);
+            margin-right: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            color: var(--secondary-color);
+        }
+
+        .product-details {
+            flex-grow: 1;
+            font-size: 14px;
+        }
+
+        .product-name {
+            font-weight: bold;
+        }
+
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .total-row {
+            font-weight: bold;
+            font-size: 18px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .discount-button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--button-bg);
+            background: none;
+            color: var(--button-bg);
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .summary-section {
+                border-left: none;
+                border-top: 1px solid var(--border-color);
+                padding-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">UNIK <span>STIL</span></div>
+        </header>
+
+        <div class="progress-bar">
+            <div class="step">
+                <div class="step-icon">✔</div>
+                <div class="step-text">Carrinho</div>
+            </div>
+            <div class="step active">
+                <div class="step-icon">2</div>
+                <div class="step-text">Entrega</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-text">Pagamento</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="form-section">
+                <h3>Dados de contato</h3>
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <input type="email" id="email" class="form-input error-input" placeholder="E-mail">
+                        <span class="error-icon" id="email-x">&times;</span>
+                    </div>
+                    <span class="error-message" id="email-error">Digite o e-mail em um formato válido</span>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="receber-ofertas">
+                    <label for="receber-ofertas">Receber ofertas e novidades por e-mail</label>
+                </div>
+
+                <h3>Entrega</h3>
+                <div class="form-group">
+                    <div class="cep-info">Não sei meu CEP</div>
+                    <div class="input-wrapper">
+                        <input type="text" id="cep" class="form-input error-input" placeholder="CEP">
+                    </div>
+                    <span class="error-message" id="cep-error">Este campo deve ser preenchido</span>
+                </div>
+
+                <div class="continue-button-container">
+                    <button class="continue-button">Continuar</button>
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <div class="product-item">
+                    <div class="product-image">IMG</div>
+                    <div class="product-details">
+                        <div class="product-name">Camiseta branca boxy (M)</div>
+                        <div class="product-quantity">1</div>
+                    </div>
+                    <div class="product-price">R$99,90</div>
+                </div>
+
+                <div class="totals-row">
+                    <span>Subtotal</span>
+                    <span>R$99,90</span>
+                </div>
+                <div class="totals-row total-row">
+                    <span>Total</span>
+                    <span>R$99,90</span>
+                </div>
+
+                <button class="discount-button">Adicionar cupom de desconto</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<button class="buy-button" onclick="goToCheckout()">COMPRAR</button>
