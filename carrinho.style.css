@@ -1,98 +1,106 @@
-/* Estilo geral */
 body {
-    font-family: sans-serif;
-    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
     padding: 20px;
-    background-color: #f4f4f4;
 }
 
-/* Botão do Carrinho */
-.carrinho-botao {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1001; /* Fica acima de tudo */
-}
-
-/* Carrinho Lateral */
-.carrinho-lateral {
-    height: 100%;
-    width: 350px; /* Largura da aba */
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    right: -350px; /* Esconde a aba para fora da tela */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
     background-color: #fff;
-    overflow-x: hidden;
-    transition: right 0.3s ease; /* Transição suave para o efeito de deslizar */
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Classe que o JavaScript adicionará para abrir o carrinho */
-.carrinho-aberto {
-    right: 0; /* Desliza para a posição visível */
+h1, h2 {
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-/* Cabeçalho do Carrinho */
-.carrinho-cabecalho {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
+/* Produtos Disponíveis */
+.product {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ccc;
 }
 
-.fechar-botao {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
+.product:last-child {
+    border-bottom: none;
 }
 
-/* Corpo e Rodapé */
-.carrinho-corpo {
-    padding: 15px;
-    flex-grow: 1; /* Ocupa o espaço restante */
-    overflow-y: auto;
-}
-
-.carrinho-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px dotted #ccc;
-}
-
-.carrinho-rodape {
-    padding: 15px;
-    border-top: 1px solid #eee;
-    text-align: right;
-}
-
-.finalizar-compra {
-    padding: 10px 20px;
+.add-to-cart {
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 8px 12px;
     cursor: pointer;
-    margin-top: 10px;
-    width: 100%;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
-/* Estilo do Produto Exemplo */
-.produto {
-    border: 1px solid #ccc;
+.add-to-cart:hover {
+    background-color: #218838;
+}
+
+/* Carrinho */
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.remove-item {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.remove-item:hover {
+    background-color: #c82333;
+}
+
+/* Resumo do Carrinho e Botão */
+.cart-summary {
+    text-align: right;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+#checkout-button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
     padding: 15px;
-    margin-bottom: 10px;
-    display: inline-block;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+#checkout-button:hover {
+    background-color: #0056b3;
 }

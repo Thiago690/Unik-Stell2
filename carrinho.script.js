@@ -1,74 +1,102 @@
-// Seleção dos elementos do DOM
-const carrinhoLateral = document.getElementById('carrinhoLateral');
-const abrirCarrinhoBtn = document.getElementById('abrirCarrinho');
-const fecharCarrinhoBtn = document.getElementById('fecharCarrinho');
-const listaItensDiv = document.getElementById('listaItens');
-const totalCarrinhoSpan = document.getElementById('totalCarrinho');
-const contadorItensSpan = document.getElementById('contadorItens');
-const carrinhoVazioMsg = document.getElementById('carrinhoVazioMsg');
+document.addEventListener('DOMContentLoaded', () => {
+    // Array para armazenar os itens do carrinho
+    let cart = [];
+    
+    const cartItemsList = document.getElementById('cart-items');
+    const cartTotalSpan = document.getElementById('cart-total');
+    const checkoutButton = document.getElementById('checkout-button');
+    const productList = document.querySelector('.products-list');
 
-// Array para armazenar os itens do carrinho
-let itensCarrinho = [];
+    // 1. Função para renderizar o carrinho na interface
+    function renderCart() {
+        cartItemsList.innerHTML = ''; // Limpa a lista atual
 
-// Funções para abrir e fechar a aba lateral
-function abrirCarrinho() {
-    carrinhoLateral.classList.add('carrinho-aberto');
-}
+        let total = 0;
 
-function fecharCarrinho() {
-    carrinhoLateral.classList.remove('carrinho-aberto');
-}
+        cart.forEach(item => {
+            // Cria o elemento da lista (<li>) para o item
+            const listItem = document.createElement('li');
+            listItem.classList.add('cart-item');
+            
+            const itemPrice = parseFloat(item.price);
+            const subtotal = itemPrice * item.quantity;
+            total += subtotal;
 
-// Event Listeners
-abrirCarrinhoBtn.addEventListener('click', abrirCarrinho);
-fecharCarrinhoBtn.addEventListener('click', fecharCarrinho);
+            listItem.innerHTML = `
+                <span>${item.name} (x${item.quantity}) - R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+                <button class="remove-item" data-name="${item.name}">Remover</button>
+            `;
 
-// Função para atualizar a visualização do carrinho e o total
-function atualizarCarrinhoVisual() {
-    listaItensDiv.innerHTML = '';
-    let total = 0;
-    let contador = 0;
+            cartItemsList.appendChild(listItem);
+        });
 
-    if (itensCarrinho.length === 0) {
-        carrinhoVazioMsg.style.display = 'block';
-    } else {
-        carrinhoVazioMsg.style.display = 'none';
+        // Atualiza o total do carrinho
+        cartTotalSpan.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+        // Adiciona ou remove a mensagem de carrinho vazio
+        if (cart.length === 0) {
+            cartItemsList.innerHTML = '<li style="text-align: center; color: #666;">O carrinho está vazio.</li>';
+        }
     }
 
-    itensCarrinho.forEach(item => {
-        // Cria a div para cada item
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('carrinho-item');
-        itemDiv.innerHTML = `
-            <span>${item.nome} (x${item.quantidade})</span>
-            <span>R$ ${(item.preco * item.quantidade).toFixed(2)}</span>
-        `;
-        listaItensDiv.appendChild(itemDiv);
+    // 2. Função para adicionar um item ao carrinho
+    function addItemToCart(name, price) {
+        // Verifica se o item já existe no carrinho
+        const existingItem = cart.find(item => item.name === name);
 
-        total += item.preco * item.quantidade;
-        contador += item.quantidade;
+        if (existingItem) {
+            existingItem.quantity += 1; // Se existir, apenas aumenta a quantidade
+        } else {
+            // Se não existir, adiciona um novo item
+            cart.push({ name: name, price: price, quantity: 1 });
+        }
+
+        renderCart(); // Atualiza a visualização
+    }
+
+    // 3. Função para remover um item do carrinho
+    function removeItemFromCart(name) {
+        // Filtra o array, mantendo apenas os itens que NÃO têm o nome fornecido
+        cart = cart.filter(item => item.name !== name);
+        renderCart(); // Atualiza a visualização
+    }
+    
+    // 4. Lógica para os botões "Adicionar"
+    productList.addEventListener('click', (event) => {
+        if (event.target.classList.contains('add-to-cart')) {
+            // Pega o elemento pai (o produto)
+            const productDiv = event.target.closest('.product');
+            
+            // Pega os dados do produto via atributos 'data-'
+            const name = productDiv.getAttribute('data-name');
+            const price = parseFloat(productDiv.getAttribute('data-price'));
+            
+            addItemToCart(name, price);
+        }
     });
 
-    totalCarrinhoSpan.textContent = total.toFixed(2);
-    contadorItensSpan.textContent = contador;
-}
+    // 5. Lógica para os botões "Remover" (usando delegação de eventos)
+    cartItemsList.addEventListener('click', (event) => {
+        if (event.target.classList.contains('remove-item')) {
+            const nameToRemove = event.target.getAttribute('data-name');
+            removeItemFromCart(nameToRemove);
+        }
+    });
 
-// Função para adicionar um item ao carrinho
-window.adicionarAoCarrinho = function(nome, preco) {
-    const itemExistente = itensCarrinho.find(item => item.nome === nome);
+    // 6. Lógica para o botão "Continuar Compra"
+    checkoutButton.addEventListener('click', () => {
+        if (cart.length > 0) {
+            alert(`Compra continuada! Total a pagar: ${cartTotalSpan.textContent}`);
+            // Aqui você adicionaria a lógica real de checkout (ex: redirecionar para uma página de pagamento)
+            
+            // Opcional: Esvaziar o carrinho após o "checkout"
+            // cart = [];
+            // renderCart();
+        } else {
+            alert('Seu carrinho está vazio. Adicione itens para continuar a compra!');
+        }
+    });
 
-    if (itemExistente) {
-        itemExistente.quantidade += 1;
-    } else {
-        itensCarrinho.push({ nome: nome, preco: preco, quantidade: 1 });
-    }
-
-    atualizarCarrinhoVisual();
-    // Opcional: abre o carrinho automaticamente ao adicionar o primeiro item
-    if (!carrinhoLateral.classList.contains('carrinho-aberto')) {
-        abrirCarrinho();
-    }
-}
-
-// Inicializa a visualização do carrinho
-atualizarCarrinhoVisual();
+    // Inicializa o carrinho na tela
+    renderCart(); 
+});
