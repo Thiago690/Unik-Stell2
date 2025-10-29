@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Array para armazenar os itens do carrinho
     let cart = [];
     
     const cartItemsList = document.getElementById('cart-items');
@@ -7,14 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkoutButton = document.getElementById('checkout-button');
     const productList = document.querySelector('.products-list');
 
-    // 1. Função para renderizar o carrinho na interface
+    // 1. Função para renderizar o carrinho na interface (MODIFICADA)
     function renderCart() {
         cartItemsList.innerHTML = ''; // Limpa a lista atual
 
         let total = 0;
 
         cart.forEach(item => {
-            // Cria o elemento da lista (<li>) para o item
             const listItem = document.createElement('li');
             listItem.classList.add('cart-item');
             
@@ -23,7 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
             total += subtotal;
 
             listItem.innerHTML = `
-                <span>${item.name} (x${item.quantity}) - R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+                <div class="item-details">
+                    <span>${item.name} - R$ ${itemPrice.toFixed(2).replace('.', ',')}</span>
+                    <input type="number" 
+                           class="item-quantity" 
+                           value="${item.quantity}" 
+                           min="1" 
+                           data-name="${item.name}">
+                    <span>Subtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+                </div>
                 <button class="remove-item" data-name="${item.name}">Remover</button>
             `;
 
@@ -41,33 +47,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Função para adicionar um item ao carrinho
     function addItemToCart(name, price) {
-        // Verifica se o item já existe no carrinho
         const existingItem = cart.find(item => item.name === name);
 
         if (existingItem) {
-            existingItem.quantity += 1; // Se existir, apenas aumenta a quantidade
+            existingItem.quantity += 1;
         } else {
-            // Se não existir, adiciona um novo item
             cart.push({ name: name, price: price, quantity: 1 });
         }
 
-        renderCart(); // Atualiza a visualização
+        renderCart();
     }
 
     // 3. Função para remover um item do carrinho
     function removeItemFromCart(name) {
-        // Filtra o array, mantendo apenas os itens que NÃO têm o nome fornecido
         cart = cart.filter(item => item.name !== name);
-        renderCart(); // Atualiza a visualização
+        renderCart();
     }
     
+    // NOVO: Função para alterar a quantidade do item
+    function changeItemQuantity(name, newQuantity) {
+        const item = cart.find(i => i.name === name);
+
+        if (item) {
+            const quantity = parseInt(newQuantity);
+            
+            if (quantity > 0) {
+                item.quantity = quantity;
+            } else {
+                // Se a quantidade for 0 ou menos, remove o item
+                removeItemFromCart(name);
+                return;
+            }
+        }
+        renderCart();
+    }
+
     // 4. Lógica para os botões "Adicionar"
     productList.addEventListener('click', (event) => {
         if (event.target.classList.contains('add-to-cart')) {
-            // Pega o elemento pai (o produto)
             const productDiv = event.target.closest('.product');
-            
-            // Pega os dados do produto via atributos 'data-'
             const name = productDiv.getAttribute('data-name');
             const price = parseFloat(productDiv.getAttribute('data-price'));
             
@@ -75,11 +93,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5. Lógica para os botões "Remover" (usando delegação de eventos)
+    // 5. Lógica para os botões "Remover" e o campo de "Quantidade" (DELEGAÇÃO)
     cartItemsList.addEventListener('click', (event) => {
+        // Lógica de Remover
         if (event.target.classList.contains('remove-item')) {
             const nameToRemove = event.target.getAttribute('data-name');
             removeItemFromCart(nameToRemove);
+        }
+    });
+
+    cartItemsList.addEventListener('change', (event) => {
+        // Lógica de Alterar Quantidade (usando o evento 'change' no input)
+        if (event.target.classList.contains('item-quantity')) {
+            const nameToUpdate = event.target.getAttribute('data-name');
+            const newQuantity = event.target.value;
+            
+            changeItemQuantity(nameToUpdate, newQuantity);
         }
     });
 
@@ -87,11 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     checkoutButton.addEventListener('click', () => {
         if (cart.length > 0) {
             alert(`Compra continuada! Total a pagar: ${cartTotalSpan.textContent}`);
-            // Aqui você adicionaria a lógica real de checkout (ex: redirecionar para uma página de pagamento)
-            
-            // Opcional: Esvaziar o carrinho após o "checkout"
-            // cart = [];
-            // renderCart();
         } else {
             alert('Seu carrinho está vazio. Adicione itens para continuar a compra!');
         }

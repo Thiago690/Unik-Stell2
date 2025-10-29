@@ -1,3 +1,4 @@
+/* style.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -63,6 +64,20 @@ h1, h2 {
     background-color: #f9f9f9;
     border-radius: 4px;
     border: 1px solid #eee;
+}
+
+.item-details {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaçamento entre nome e input */
+}
+
+.item-quantity {
+    width: 50px; /* Largura do campo de quantidade */
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .remove-item {
