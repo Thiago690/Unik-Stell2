@@ -67,6 +67,11 @@ function toggleTab(tab) {
 tabLogin.addEventListener("click", () => toggleTab("login"));
 tabRegister.addEventListener("click", () => toggleTab("register"));
 
+// --- BOTÃO PARA IR À PÁGINA DE CADASTRO ---
+const goToRegisterBtn = document.getElementById("goToRegisterBtn");
+if (goToRegisterBtn) {
+  goToRegisterBtn.addEventListener("click", () => toggleTab("register"));
+}
 
 // --- REGISTER ---
 registerForm.addEventListener("submit", async (e) => {
@@ -96,7 +101,6 @@ registerForm.addEventListener("submit", async (e) => {
     showAuthMsg(err?.message || "Erro ao cadastrar", "error");
   }
 });
-
 
 // --- LOGIN ---
 loginForm.addEventListener("submit", async (e) => {
@@ -198,10 +202,6 @@ if (forgotBtn) {
 
 // --- PROFILE / TABLE (manutenção) ---
 async function loadMyProfileAndRender(userId, email) {
-  // A lógica de carregamento do perfil é mantida, mas a renderização da tabela
-  // depende dos elementos HTML '#usersTable' e '#privateArea' existirem na página.
-  // Como não estão no seu HTML, esta função pode não ter efeito visual.
-  // Mantive o código caso adicione esses elementos.
   try {
     const { data, error } = await supabase
       .from("profiles")
@@ -293,18 +293,15 @@ editForm.addEventListener("submit", async (e) => {
 // --- AUTH STATE CHANGE (Gerencia login/logout) ---
 supabase.auth.onAuthStateChange(async (event, session) => {
   if (session?.user) {
-    // Logado
     authArea.classList.add("hidden");
-    privateArea && privateArea.classList.remove("hidden"); // Se privateArea existir, mostra
+    privateArea && privateArea.classList.remove("hidden");
     logoutBtn.classList.remove("hidden");
     logoutBtn2 && logoutBtn2.classList.remove("hidden");
     await loadMyProfileAndRender(session.user.id, session.user.email);
 
-    // também mostrar welcome area automaticamente
     const nameFromMeta = session.user.user_metadata?.full_name || session.user.user_metadata?.nome || session.user.user_metadata?.username || session.user.email || 'Usuário';
     showWelcomeArea(nameFromMeta);
   } else {
-    // Deslogado
     authArea.classList.remove("hidden");
     privateArea && privateArea.classList.add("hidden");
     logoutBtn.classList.add("hidden");
@@ -312,7 +309,7 @@ supabase.auth.onAuthStateChange(async (event, session) => {
     usersTableBody && (usersTableBody.innerHTML = "");
     editFormContainer.classList.add("hidden");
     hideWelcomeArea();
-    toggleTab("login"); // Garante que a aba Login está ativa ao deslogar
+    toggleTab("login");
   }
 });
 
@@ -327,13 +324,11 @@ supabase.auth.onAuthStateChange(async (event, session) => {
       privateArea && privateArea.classList.remove("hidden");
       await loadMyProfileAndRender(session.user.id, session.user.email);
 
-      // mostrar welcome se tiver user
       const nameFromMeta = session.user.user_metadata?.full_name || session.user.user_metadata?.nome || session.user.user_metadata?.username || session.user.email || 'Usuário';
       showWelcomeArea(nameFromMeta);
     } else {
       authArea.classList.remove("hidden");
       privateArea && privateArea.classList.add("hidden");
-      // Mantenha a aba de Login ativa por padrão
       toggleTab("login");
     }
   } catch (err) {
