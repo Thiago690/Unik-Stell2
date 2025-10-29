@@ -1,0 +1,98 @@
+/* Estilo geral */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+/* Botão do Carrinho */
+.carrinho-botao {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001; /* Fica acima de tudo */
+}
+
+/* Carrinho Lateral */
+.carrinho-lateral {
+    height: 100%;
+    width: 350px; /* Largura da aba */
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: -350px; /* Esconde a aba para fora da tela */
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: right 0.3s ease; /* Transição suave para o efeito de deslizar */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Classe que o JavaScript adicionará para abrir o carrinho */
+.carrinho-aberto {
+    right: 0; /* Desliza para a posição visível */
+}
+
+/* Cabeçalho do Carrinho */
+.carrinho-cabecalho {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fechar-botao {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+/* Corpo e Rodapé */
+.carrinho-corpo {
+    padding: 15px;
+    flex-grow: 1; /* Ocupa o espaço restante */
+    overflow-y: auto;
+}
+
+.carrinho-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #ccc;
+}
+
+.carrinho-rodape {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.finalizar-compra {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Estilo do Produto Exemplo */
+.produto {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
