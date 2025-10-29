@@ -1,0 +1,383 @@
+:root {
+    /* Cores (Necessárias para o funcionamento do seu formulário!) */
+    --brancao: #ffffff;
+    --mephiles: #1a202c; /* Títulos / Texto escuro */
+    --carlos: #4a5568; /* Texto/tab inativo */
+    --baranco: #e2e8f0; /* Bordas/divisórias */
+    --sonic: #4299e1; /* Cor de foco (azul) */
+    --carlito: #a0aec0; /* Cor de placeholder */
+    --botao: #4299e1; /* Cor de botão principal */
+    --pretuncio: #2d3748; /* Cor de texto médio */
+    --pare: #e53e3e; /* Vermelho (erros) */
+    --verde: #38a169; /* Verde (sucesso) */
+    
+    /* Fontes */
+    --font-inter: 'Roboto', Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.top-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.top-item .icon {
+    font-size: 20px;
+}
+
+.main-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.logo span {
+    color: #ffd700;
+}
+
+.main-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: #000000; /* Removida a cor duplicada */
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.main-menu a:hover {
+    color: #ffd700;
+}
+
+.cart-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* CARROSSEL - Estilos fora de media query */
+.carousel-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    display: none;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+/* FIM CARROSSEL */
+
+
+/* Container Principal */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.section {
+    background: var(--brancao);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+}
+
+/* Área de Autenticação */
+#authArea {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+#pageTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--mephiles);
+    margin: 0;
+}
+
+.tabs {
+    display: flex;
+    background: #f7fafc;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.tab {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--carlos);
+    font-family: var(--font-inter);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background: #fff;
+    color: var(--mephiles);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--baranco);
+    border-radius: 8px;
+    font-family: var(--font-inter);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.form input:focus {
+    outline: none;
+    border-color: var(--sonic);
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.form input::placeholder {
+    color: var(--carlito);
+}
+
+.btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-inter);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:not(.ghost) {
+    background: var(--botao);
+    color: white;
+    box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3);
+}
+
+.btn:hover:not(.ghost) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
+}
+
+.btn.ghost {
+    background: transparent;
+    border: 2px solid var(--baranco);
+    color: var(--carlos);
+}
+
+.btn.ghost:hover {
+    background: var(--baranco);
+    color: var(--mephiles);
+}
+
+/* Área Privada (Manutenção) */
+.private {
+    margin-top: 2rem;
+}
+
+#privateArea h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--mephiles);
+    margin: 0;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+}
+
+.users-table th {
+    background: #f7fafc;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--mephiles);
+    border-bottom: 2px solid var(--baranco);
+}
+
+.users-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--baranco);
+    color: var(--pretuncio);
+}
+
+.users-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Formulário de Edição */
+#editFormContainer {
+    background: var(--brancao);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+#editFormContainer h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--mephiles);
+    margin-bottom: 1.5rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.field label {
+    font-weight: 500;
+    color: var(--pretuncio);
+    font-size: 0.9rem;
+}
+
+/* Mensagens */
+.msg {
+    min-height: 24px;
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+.msg.error {
+    color: var(--pare);
+}
+
+.msg.success {
+    color: var(--verde);
+}
+
+/* CLASSE PRINCIPAL PARA OCULTAR/EXIBIR ELEMENTOS (Funcionará agora!) */
+.hidden {
+    display: none !important;
+}
+
+/* Rodapé */
+.site-footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-footer p {
+    margin: 5px 0;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-menu {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .main-menu ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .cart-icon {
+        margin-top: 10px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+}
+
+/* Removidas classes responsivas que não estavam no HTML fornecido */
