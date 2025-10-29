@@ -3,40 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho de Compras Simples</title>
+    <title>Carrinho de Compras | Inspired</title>
     <link rel="stylesheet" href="carrinho.style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>🛍️ Meu Carrinho de Compras</h1>
+    <div class="main-content">
+        <h1>🛒 Carrinho de Compras</h1>
 
-        <div class="products-list">
-            <h2>Produtos Disponíveis</h2>
-            <div class="product" data-name="Camiseta Premium" data-price="59.90">
-                <span>Camiseta Premium - R$ 59,90</span>
-                <button class="add-to-cart">Adicionar</button>
+        <div class="cart-layout">
+            
+            <div class="cart-items-container">
+                <ul id="cart-items">
+                    </ul>
             </div>
-            <div class="product" data-name="Calça Jeans" data-price="129.50">
-                <span>Calça Jeans - R$ 129,50</span>
-                <button class="add-to-cart">Adicionar</button>
+
+            <div class="cart-summary-sidebar">
+                <div class="summary-box">
+                    <h3>Resumo do Pedido</h3>
+                    
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">R$ 0,00</span>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Frete:</span>
+                        <span id="shipping-cost" class="free">Grátis</span>
+                    </div>
+                    
+                    <hr>
+
+                    <div class="summary-line total">
+                        <strong>Total:</strong>
+                        <strong id="cart-total">R$ 0,00</strong>
+                    </div>
+
+                    <button id="checkout-button">Continuar Compra</button>
+                    
+                    <p class="disclaimer">O frete grátis é um benefício exclusivo para este carrinho.</p>
+                </div>
             </div>
-            <div class="product" data-name="Tênis Esportivo" data-price="199.99">
-                <span>Tênis Esportivo - R$ 199,99</span>
-                <button class="add-to-cart">Adicionar</button>
-            </div>
+
         </div>
         
-        <div class="cart-section">
-            <h2>Itens no Carrinho</h2>
-            <ul id="cart-items">
-                </ul>
-
-            <div class="cart-summary">
-                <p>Total: <span id="cart-total">R$ 0,00</span></p>
+        <div class="products-list-mock">
+            <h2>Adicionar Produtos</h2>
+             <div class="product" data-name="Fone Bluetooth X200" data-price="150.00">
+                <span>Fone Bluetooth X200 - R$ 150,00</span>
+                <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
-            
-            <button id="checkout-button">Continuar Compra</button>
+            <div class="product" data-name="Smartwatch Pro-V" data-price="399.90">
+                <span>Smartwatch Pro-V - R$ 399,90</span>
+                <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Adicionar</button>
+            </div>
         </div>
     </div>
 
